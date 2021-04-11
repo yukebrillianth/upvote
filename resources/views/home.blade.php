@@ -44,7 +44,7 @@
             }
 
             .header-4-1 .navbar-light .navbar-toggler-icon {
-                background-image: url("setting:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
             }
 
             .header-4-1 .navbar-light .navbar-toggler {
@@ -336,10 +336,10 @@
         </style>
         <div class="header-4-1" style="font-family: 'Poppins', sans-serif;">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a href="/">
+                <a href="#">
                     <img style="margin-right:0.75rem" src="{{ asset('elements/img/logo.png')}}" alt="UpVote-Logo">
                 </a>
-                <button class=" navbar-toggler" type="button" setting-bs-toggle="modal" setting-bs-target="#targetModal-header-4-1">
+                <button class=" navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#targetModal-header-4-1">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -350,7 +350,7 @@
                                 <a class="modal-title" id="targetModalLabel-header-4-1">
                                     <img style="margin-top:0.5rem" src="{{ asset('elements/img/logo.png')}}" alt="UpVote-Logo">
                                 </a>
-                                <button type="button" class="btn-close" setting-bs-dismiss="modal" aria-label="Close">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                 </button>
                             </div>
                             <div class="modal-body" style="padding:	2rem; padding-top: 0; padding-bottom: 0;">
@@ -367,7 +367,11 @@
                                 </ul>
                             </div>
                             <div class="modal-footer" style="padding:	2rem; padding-top: 0.75rem">
+                                @if (!Auth::user())
                                 <a href="{{URL::route('login')}}" class="btn btn-fill-header-4-1">Masuk</a>
+                                @elseif (Auth::user())
+                                <a href="{{URL::route('dashboard')}}" style="font-size: 18px;color: #1d1e3c;font-weight: 300;line-height: 1.5rem;text-decoration: none;">Selamat datang, <b>{{Auth::user()->name}}!</b></a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -385,7 +389,11 @@
                             <a class="nav-link" href="{{URL::route('dashboard')}}">Pilih Sekarang!</a>
                         </li>
                     </ul>
+                    @if (!Auth::user())
                     <a href="{{URL::route('login')}}" class="btn btn-fill-header-4-1">Masuk</a>
+                    @elseif (Auth::user())
+                    <a href="{{URL::route('dashboard')}}" style="font-size: 18px;color: #1d1e3c;font-weight: 300;line-height: 1.5rem;text-decoration: none;">Selamat datang, <b>{{Auth::user()->name}}!</b></a>
+                    @endif
                 </div>
             </nav>
 
@@ -393,20 +401,12 @@
                 <div class="mx-auto d-flex flex-lg-row flex-column hero-header-4-1">
                     <!-- Left Column -->
                     <div class="left-column-header-4-1 d-flex flex-lg-grow-1 flex-column align-items-lg-start text-lg-start align-items-center text-center">
-                        <h1 class="title-text-big-header-1 d-lg-inline d-none">{{ $setting[0]->nama_kegiatan }}</h1>
-                        <h1 class="title-text-big-header-2 d-lg-inline d-none">{{ $setting[0]->nama_instansi }}</h1>
-                        <h1 class="title-text-big-header-3 d-lg-inline d-none">
-                            @if ($setting[0]->periode)
-                            Periode {{ $setting[0]->periode }}
-                            @endif
-                        </h1>
-                        <h1 class="title-text-small-header-1 d-lg-none d-inline">{{ $setting[0]->nama_kegiatan }}</h1>
-                        <h1 class="title-text-small-header-2 d-lg-none d-inline">{{ $setting[0]->nama_instansi }}</h1>
-                        <h1 class="title-text-small-header-3 d-lg-none d-inline">
-                            @if ($setting[0]->periode)
-                            Periode {{ $setting[0]->periode }}
-                            @endif
-                        </h1>
+                        <h1 class="title-text-big-header-1 d-lg-inline d-none">{{$setting[0]->nama_kegiatan}}</h1>
+                        <h1 class="title-text-big-header-2 d-lg-inline d-none">{{$setting[0]->nama_instansi}}</h1>
+                        <h1 class="title-text-big-header-3 d-lg-inline d-none">{{$setting[0]->periode}}</h1>
+                        <h1 class="title-text-small-header-1 d-lg-none d-inline">{{$setting[0]->nama_kegiatan}}</h1>
+                        <h1 class="title-text-small-header-2 d-lg-none d-inline">{{$setting[0]->nama_instansi}}</h1>
+                        <h1 class="title-text-small-header-3 d-lg-none d-inline">{{$setting[0]->periode}}</h1>
                         <div class="div-button-header-4-1 d-inline d-lg-flex align-items-center mx-lg-0 mx-auto justify-content-center">
                             <a href="{{URL::route('login')}}" class="btn d-inline-flex mb-md-0 btn-try-header-4-1">Masuk</a>
                             <a href="{{URL::route('dashboard')}}" class="btn btn-outline-header-4-1">
@@ -545,14 +545,14 @@
                                 <span class="circle-content-3-1 d-flex align-items-center justify-content-center">
                                     1
                                 </span>
-                                Masuk Menggunakan Akun Anda
+                                Masuk Menggunakan Token Anda
                             </h4>
                             <p class="text-caption-content-3-1 d-sm-inline d-none">
-                                Buka halaman login, lalu masukkan email dan password <br> anda yang
+                                Buka halaman login, lalu masukkan token dan password <br> anda yang
                                 sudah diberi oleh panitia.
                             </p>
                             <p class="text-caption-content-3-1 d-sm-none d-inline">
-                                Buka halaman login, lalu masukkan email dan password <br> anda yang
+                                Buka halaman login, lalu masukkan token dan password <br> anda yang
                                 sudah diberi oleh panitia.
                             </p>
                         </li>
@@ -733,7 +733,7 @@
                     <a class="footer-link-footer-2-1" style="text-decoration: none;">Licenses</a>
                 </nav>
                 <nav class="d-flex flex-lg-row flex-column align-items-center justify-content-center">
-                    <p style="margin: 0">{{ $setting[0]->nama_instansi }}</p>
+                    <p style="margin: 0">{{$setting[0]->nama_instansi}}</p>
                 </nav>
             </div>
         </div>

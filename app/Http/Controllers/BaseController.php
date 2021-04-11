@@ -17,32 +17,9 @@ class BaseController extends Controller
         View::share('setting', $data);
     }
 
-    public function dashboard()
+    public function home()
     {
-        /*
-        Jika role = user, maka akan menampilkan form
-        Jika role = super-administrator, maka akan menampilkan dashboard
-        */
-        if (Auth::user()->hasRole('participant')) {
-            return redirect()->action([BaseController::class, 'form']);
-        } elseif (Auth::user()->hasRole('super-administrator')) {
-            return 'Dashboard';
-        }
-    }
-
-    public function index()
-    {
-        // user yang login tidak boleh ke halaman home
-        if (Auth::user()->hasRole('participant')) {
-            return redirect()->route('dashboard');
-        }
         return view('home');
-    }
-
-    public function form()
-    {
-        $data = Candidate::all();
-        return view('form', compact('data'));
     }
 
     public function logout()
