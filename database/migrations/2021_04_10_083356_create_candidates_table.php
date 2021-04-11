@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateCandidatesTable extends Migration
@@ -23,9 +24,10 @@ class CreateCandidatesTable extends Migration
             $table->unsignedBigInteger('class_id')->nullable();
             $table->foreign('class_id')
                 ->references('id')
-                ->on('class')
+                ->on('kelas')
                 ->onCascade('delete');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 
