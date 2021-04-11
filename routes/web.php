@@ -26,7 +26,7 @@ Auth::routes([
 
 // Base
 Route::get('/', [BaseController::class, 'home']);
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('logout', [BaseController::class, 'logout'])->name('logout');
 
 // Route group dengan role participant
