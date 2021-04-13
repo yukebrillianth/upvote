@@ -4,104 +4,104 @@
 
 @section('header')
 <div class="row mb-2">
-    <div class="col-sm-6">
-        <h1 class="m-0">Dashboard</h1>
-    </div><!-- /.col -->
-    <div class="col-sm-6">
-        <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-    </div><!-- /.col -->
+  <div class="col-sm-6">
+    <h1 class="m-0">Dashboard</h1>
+  </div><!-- /.col -->
+  <div class="col-sm-6">
+    <ol class="breadcrumb float-sm-right">
+      <li class="breadcrumb-item active">Dashboard</li>
+    </ol>
+  </div><!-- /.col -->
 </div><!-- /.row -->
 @endsection
 
 @section('content')
 <!-- Small boxes (Stat box) -->
 <div class="row">
-    <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-info">
-            <div class="inner">
-                <h3>{{$data['peserta']}}</h3>
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3>{{$data['peserta']}}</h3>
 
-                <p>Jumlah Peserta</p>
-            </div>
-            <div class="icon">
-                <i class="fas fa-users"></i>
-            </div>
-            <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
+        <p>Jumlah Peserta</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-success">
-            <div class="inner">
-                <h3>{{$data['kandidat']}}</h3>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-success">
+      <div class="inner">
+        <h3>{{$data['kandidat']}}</h3>
 
-                <p>Jumlah Kandidat</p>
-            </div>
-            <div class="icon">
-                <i class="fas fa-user-tie"></i>
-            </div>
-            <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
+        <p>Jumlah Kandidat</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-user-tie"></i>
+      </div>
+      <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-warning">
-            <div class="inner">
-                <h3>{{$data['sudah_memilih']}}</h3>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-warning">
+      <div class="inner">
+        <h3>{{$data['sudah_memilih']}}</h3>
 
-                <p>Peserta Sudah Memilih</p>
-            </div>
-            <div class="icon">
-                <i class="fas fa-user-check"></i>
-            </div>
-            <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
+        <p>Peserta Sudah Memilih</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-user-check"></i>
+      </div>
+      <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-danger">
-            <div class="inner">
-                <h3>{{$data['belum_memilih']}}</h3>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-danger">
+      <div class="inner">
+        <h3>{{$data['belum_memilih']}}</h3>
 
-                <p>Peserta Belum Memilih</p>
-            </div>
-            <div class="icon">
-                <i class="fas fa-user-clock"></i>
-            </div>
-            <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
+        <p>Peserta Belum Memilih</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-user-clock"></i>
+      </div>
+      <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-    <!-- ./col -->
+  </div>
+  <!-- ./col -->
 </div>
 <!-- /.row -->
 
 <!-- Online users -->
 <!-- interactive chart -->
 <div class="card">
-    <div class="card-header">
-        <h3 class="card-title">
-            <i class="far fa-chart-bar"></i>
-            Peserta Online
-        </h3>
+  <div class="card-header">
+    <h3 class="card-title">
+      <i class="far fa-chart-bar"></i>
+      Peserta Online
+    </h3>
 
-        <div class="card-tools">
-            Real time
-            <div class="btn-group" id="realtime" data-toggle="btn-toggle">
-                <button type="button" class="btn btn-default btn-sm active" data-toggle="on">On</button>
-                <button type="button" class="btn btn-default btn-sm" data-toggle="off">Off</button>
-            </div>
-        </div>
+    <div class="card-tools">
+      Real time
+      <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+        <button type="button" class="btn btn-default btn-sm active" data-toggle="on">On</button>
+        <button type="button" class="btn btn-default btn-sm" data-toggle="off">Off</button>
+      </div>
     </div>
-    <div class="card-body">
-        <div id="interactive" style="height: 300px;"></div>
-    </div>
-    <!-- /.card-body-->
+  </div>
+  <div class="card-body">
+    <div id="interactive" style="height: 300px;"></div>
+  </div>
+  <!-- /.card-body-->
 </div>
 <!-- /.card -->
 @endsection
@@ -112,7 +112,7 @@
 <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
 <script src="{{ asset('adminLTE/plugins/flot/plugins/jquery.flot.resize.js')}}"></script>
 <script>
-    $(function () {
+  $(function () {
       /*
        * Flot Interactive Chart
        * -----------------------

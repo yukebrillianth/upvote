@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BaseController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ParticipantController;
 use Illuminate\Support\Facades\Auth;
@@ -43,5 +44,14 @@ Route::middleware(['role:participant'])->group(function () {
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super-administrator']], function () {
     Route::get('/kelas', function () {
         return 'Kelas';
+    });
+    Route::prefix('kandidat')->group(function () {
+        Route::get('/', [CandidateController::class, 'index'])->name('kandidat');
+        Route::post('/', [CandidateController::class, 'store'])->name('storeKandidat');
+        Route::get('/add', [CandidateController::class, 'create'])->name('addKandidat');
+        Route::delete('/', [CandidateController::class, 'deleteAll'])->name('deleteAll');
+        Route::delete('{id}', [CandidateController::class, 'destroy'])->name('deleteKandidat');
+        Route::get('edit/{id}', [CandidateController::class, 'edit'])->name('editKandidat');
+        Route::put('edit/{id}', [CandidateController::class, 'update'])->name('putKandidat');
     });
 });

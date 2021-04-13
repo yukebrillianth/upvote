@@ -14,8 +14,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "laravolt/avatar": "^4.1",
-        "santigarcor/laratrust": "^6.3",
-        "joshrainwater/active-users": "^2.1"
+        "realrashid/sweet-alert": "^3.2",
+        "santigarcor/laratrust": "^6.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

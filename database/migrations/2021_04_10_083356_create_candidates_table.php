@@ -21,8 +21,8 @@ class CreateCandidatesTable extends Migration
             $table->longText('misi');
             $table->longText('program_kerja');
             $table->string('image');
-            $table->unsignedBigInteger('class_id')->nullable();
-            $table->foreign('class_id')
+            $table->unsignedBigInteger('kelas_id')->nullable();
+            $table->foreign('kelas_id')
                 ->references('id')
                 ->on('kelas')
                 ->onCascade('delete');
