@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1007ddd4fc20eb049381f1b128a53cc7",
+    "content-hash": "96cb521f8f5ca2ea5f81e3b8b81e6860",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -762,6 +762,126 @@
             "time": "2021-03-21T16:25:00+00:00"
         },
         {
+            "name": "intervention/image",
+            "version": "2.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "abbf18d5ab8367f96b3205ca3c89fb2fa598c69e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/abbf18d5ab8367f96b3205ca3c89fb2fa598c69e",
+                "reference": "abbf18d5ab8367f96b3205ca3c89fb2fa598c69e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "guzzlehttp/psr7": "~1.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "^4.8 || ^5.7"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Intervention\\Image\\ImageServiceProvider"
+                    ],
+                    "aliases": {
+                        "Image": "Intervention\\Image\\Facades\\Image"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@olivervogel.com",
+                    "homepage": "http://olivervogel.com/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "time": "2019-11-02T09:15:47+00:00"
+        },
+        {
+            "name": "joshrainwater/active-users",
+            "version": "2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joshrainwater/active-users.git",
+                "reference": "6b420d0ce6d3b0cbb5cd7c41ca54af64b026e9ec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joshrainwater/active-users/zipball/6b420d0ce6d3b0cbb5cd7c41ca54af64b026e9ec",
+                "reference": "6b420d0ce6d3b0cbb5cd7c41ca54af64b026e9ec",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.6|~5.7|~5.8|^6.0|^7.0|^8.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "^1.7",
+                "orchestra/testbench": "^4.0",
+                "phpunit/phpunit": "^8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rainwater\\Active\\ActiveServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Rainwater\\Active\\": "src/Active"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Package for easily retrieving a list of active users and guests that are currently online.",
+            "homepage": "https://github.com/joshrainwater/active-users",
+            "keywords": [
+                "active uesrs",
+                "laravel",
+                "online activity",
+                "php"
+            ],
+            "time": "2020-09-26T21:05:02+00:00"
+        },
+        {
             "name": "kkszymanowski/traitor",
             "version": "0.2.5",
             "source": {
@@ -1087,6 +1207,72 @@
                 "ui"
             ],
             "time": "2021-01-06T19:20:22+00:00"
+        },
+        {
+            "name": "laravolt/avatar",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravolt/avatar.git",
+                "reference": "3ab66e32c1f7c84e7095adfa1de3cb20964e6a1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravolt/avatar/zipball/3ab66e32c1f7c84e7095adfa1de3cb20964e6a1e",
+                "reference": "3ab66e32c1f7c84e7095adfa1de3cb20964e6a1e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/cache": "6.* | 7.*| 8.*",
+                "illuminate/support": "6.* | 7.* | 8.*",
+                "intervention/image": "^2.5",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.3",
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "~9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravolt\\Avatar\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Avatar": "Laravolt\\Avatar\\Facade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravolt\\Avatar\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bayu Hendra Winata",
+                    "email": "uyab.exe@gmail.com",
+                    "homepage": "https://laravolt.dev",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Turn name, email, and any other string into initial-based avatar or gravatar.",
+            "homepage": "https://github.com/laravolt/avatar",
+            "keywords": [
+                "avatar",
+                "gravatar",
+                "laravel",
+                "laravolt"
+            ],
+            "time": "2021-03-25T01:43:03+00:00"
         },
         {
             "name": "league/commonmark",

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidate;
 use App\Models\Setting;
+use App\Models\User;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,17 @@ class DashboardController extends Controller
             $data = Candidate::all();
             return view('form', compact('data'));
         } elseif (Auth::user()->hasRole('super-administrator')) {
-            return 'Dashboard';
+            $participants = User::whereRoleIs('participant')->count();
+            $candidates = Candidate::get()->count();
+            $has_voted = User::where('has_voted', true)->whereRoleIs('participant')->count();
+            $no_voted = User::where('has_voted', false)->whereRoleIs('participant')->count();
+            $data = [
+                "peserta" => $participants,
+                "kandidat" => $candidates,
+                "sudah_memilih" => $has_voted,
+                "belum_memilih" => $no_voted
+            ];
+            return view('dashboard.index', compact('data'));
         }
     }
 }
