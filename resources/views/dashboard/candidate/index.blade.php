@@ -26,16 +26,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <div class="btn-group">
-            <a href="{{ Route('addKandidat') }}" id="btnAdd" class="btn btn-success">Tambah Data</a>
-            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <div class="dropdown-menu" role="menu">
-                <a class="dropdown-item" href="#">Import Excel</a>
-                <a class="dropdown-item" href="#">Download Excel Template</a>
-            </div>
-        </div>
+        <a class="btn btn-success" id="btnAdd" href="{{ Route('addKandidat') }}">Tambah Data</a>
         <button id="btndelall" class="btn btn-default ml-2"><i class="fas fa-trash"></i> Hapus Semua</button>
     </div>
     <!-- /.card-header -->
