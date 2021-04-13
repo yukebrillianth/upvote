@@ -17,11 +17,11 @@ class CreateCandidatesTable extends Migration
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kandidat')->nullable(false);
-            $table->longText('visi');
-            $table->longText('misi');
+            $table->longText('visi')->nullable(false);
+            $table->longText('misi')->nullable(false);
             $table->longText('program_kerja');
-            $table->string('image');
-            $table->unsignedBigInteger('kelas_id')->nullable();
+            $table->string('image')->nullable(false);
+            $table->unsignedBigInteger('kelas_id');
             $table->foreign('kelas_id')
                 ->references('id')
                 ->on('kelas')

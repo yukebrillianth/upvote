@@ -53,7 +53,7 @@
                     @if (!$item->kelas)
                     <td>Tanpa kelas</td>
                     @elseif ($item->kelas->class_name)
-                    <td>{{ dd($item->kelas->class_name) }}</td>
+                    <td>{{ $item->kelas->class_name }}</td>
                     @endif
                     @if (!$item["jumlah_pemilih"])
                     <td>0</td>
