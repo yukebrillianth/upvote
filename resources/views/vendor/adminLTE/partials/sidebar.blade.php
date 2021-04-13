@@ -31,6 +31,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{URL::route('kelas')}}" class="nav-link {{ (request()->is('dashboard/kelas*')) ? 'active' : '' }}">
+                        <i class="fas fa-users"></i>
+                        <p>
+                            Kelas
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{URL::route('kandidat')}}" class="nav-link {{ (request()->is('dashboard/kandidat*')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-tie"></i>
                         <p>

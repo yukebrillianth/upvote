@@ -80,7 +80,7 @@
                 </div>
                 <div class="form-group">
                     <label for="nama">Program kerja</label>
-                    <input type="text" name="program_kerja" id="program_kerja" class="form-control @error('program_kerja') is-invalid @enderror" value="{{ old('program_kerja') }}" placeholder="Masukkan program kerja kandidat" required autofocus>
+                    <textarea id="program_kerja" class="form-control @error('program_kerja') is-invalid @enderror" rows="3" name="program_kerja" spellcheck=" false">{{ old('program_kerja') }}</textarea>
                     @error('program_kerja')
                     <div id="validationServer03Feedback" class="invalid-feedback">
                         {{ $message }}

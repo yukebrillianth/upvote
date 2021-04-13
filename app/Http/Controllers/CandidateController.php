@@ -19,6 +19,7 @@ class CandidateController extends Controller
         $data = Setting::all();
         View::share('setting', $data);
     }
+
     /**
      * Display a listing of the resource.
      *
