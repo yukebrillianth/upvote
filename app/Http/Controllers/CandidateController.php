@@ -118,7 +118,7 @@ class CandidateController extends Controller
     public function edit($id)
     {
         $class = kelas::all();
-        $data = Candidate::where('id', $id)->first();
+        $data = Candidate::find($id)->first();
 
         return view('dashboard.candidate.edit', compact('data', 'class'));
     }
@@ -135,22 +135,24 @@ class CandidateController extends Controller
         $validatedData = $request->validate(
             [
                 'nama_kandidat' => 'required|max:45|min:4',
-                'class_id' => 'required',
                 'visi' => 'required|min:20|max:9000|',
                 'misi' => 'required|min:20|max:9000|',
+                'program_kerja' => 'required|min:20|max:6000|',
                 'image' => 'max:4000|mimes:png,jpg,jpeg',
             ],
             [
                 'nama_kandidat.required' => 'Nama harus diisi!',
                 'nama_kandidat.max' => 'Nama harus kurang dari 45 karakter!',
                 'nama_kandidat.min' => 'Nama harus lebih dari 4 karakter!',
-                'class_id.required' => 'Kelas Harus diisi!',
                 'visi.required' => 'Visi harus diisi!',
                 'visi.min' => 'Visi harus lebih dari 20 karakter!',
                 'visi.max' => 'Visi harus kurang dari 900 karakter!',
                 'misi.required' => 'Misi harus diisi!',
                 'misi.min' => 'Misi harus lebih dari 20 karakter!',
                 'misi.max' => 'Misi harus kurang dari 900 karakter!',
+                'program_kerja.required' => 'Program kerja harus diisi!',
+                'program_kerja.min' => 'Program kerja harus lebih dari 20 karakter!',
+                'program_kerja.max' => 'Program kerja harus kurang dari 900 karakter!',
                 'image.max' => 'Ukuran maksimal 4 MB!',
                 'image.mimes' => 'Format hanya boleh png, jpg, jpeg!',
 
@@ -176,8 +178,9 @@ class CandidateController extends Controller
             'nama_kandidat' => $request->nama_kandidat,
             'visi' => $request->get('visi'),
             'misi' => $request->get('misi'),
+            'program_kerja' => $request->get('program_kerja'),
             'image' => $image,
-            'class_id' => $request->get('class_id')
+            'kelas_id' => $request->get('kelas_id')
         ]);
 
         Alert::success('Data Berhasil Diubah!');

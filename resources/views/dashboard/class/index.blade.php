@@ -1,7 +1,6 @@
 @extends('vendor.adminLTE.master')
 
 @section('title', 'Data Kelas')
-<meta name="csrf-token" content="{{ Session::token() }}">
 
 @push('style')
 <!-- DataTables -->
@@ -47,8 +46,10 @@
                         <tr>
                             <td>{{$item->class_name}}</td>
                             <th>{{$item->id}}</th>
-                            <td><a href="{{ Route('editKelas', ['id' => $item->id]) }}" class="badge badge-success text-white" role="button">Ubah</a>
-                                <a href="#" class="badge badge-danger btn-del text-white" id="singledel" data-id="{{ $item->id }}" role="button">Hapus</a></td>
+                            <td>
+                                <a id="{{$item->id}}" data-id="{{$item->id}}" class="badge badge-success text-white" role="button">Ubah</a>
+                                <a href="#" class="badge badge-danger btn-del text-white" id="singledel" data-id="{{ $item->id }}" role="button">Hapus</a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -114,22 +115,68 @@
             }
         }
         }).then((value) => {
-            // console.log(value["value"])
-            $.ajax({
-                url: "{{ route('storeKelas') }}",
-                method: 'post',
-                data: {
-                    _token: $('meta[name=csrf-token]').attr('content'), 
-                    class_name: value["value"]
-                },
-                success: function () {
-                    location.reload()
-                },
-                error: function (res) {
-                    console.log(res)
-                }
-            });
+            if(value["value"]) {
+                $("#className").val(value["value"])
+                $("#add").submit()
+            }
         })
+    });
+    // Edit Button
+    $(".badge-success").click(function() {
+        const id = $(this).attr('id'); // $(this) refers to button that was clicked
+        const token = "{{ csrf_token() }}"
+        $.ajax({
+            type: 'GET',
+            url: "kelas/edit/"+id,
+            success: function (res) {
+                Swal.fire({
+                title: 'Edit nama kelas',
+                input: 'text',
+                showCancelButton: true,
+                inputValue: res["class_name"],
+                inputAttributes: {
+                    maxlength: 45,
+                    minlength: 2,
+                },
+                inputValidator: (value) => {
+                    if (!value) {
+                    return 'Nama harus diisi'
+                    }
+                }
+            }).then((value) => {
+                if(value["value"]) {
+                    if(value["value"] != res["class_name"])
+                    $.ajax({
+                        type: 'PUT',
+                        url: 'kelas/edit/'+id,
+                        data: {
+                            _token: token,
+                            class_name: value["value"]
+                        },
+                        success: function (res) {
+                            Swal.fire({
+                                title: res,
+                                icon: 'success',
+                                confirmButtonText: 'ok'
+                            }).then(() => {
+                                location.reload();
+                            })
+                        },
+                        error: function (err) {
+                            Swal.fire({
+                                title: err.responseJSON.errors.class_name[0],
+                                icon: 'error',
+                                confirmButtonText: 'ok'
+                            })
+                        }
+                    })
+                }
+            })
+            },
+            error: function (res) {
+                    console.log(res)
+            }
+        });
     });
     // Delete All Button
     $('#btndelall').click( function() {

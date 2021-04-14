@@ -130,7 +130,7 @@
 
         let onlineUsers = [];
             $.ajax({
-                url : '/online',
+                url : '/dashboard/online',
                 type: 'GET',
                 async: false,
                 success : function(res) {

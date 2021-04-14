@@ -25,7 +25,8 @@ class CreateCandidatesTable extends Migration
             $table->foreign('kelas_id')
                 ->references('id')
                 ->on('kelas')
-                ->onCascade('delete');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

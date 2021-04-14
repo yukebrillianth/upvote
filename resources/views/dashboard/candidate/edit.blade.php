@@ -40,14 +40,14 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <select class="form-control @error('class_id') is-invalid @enderror" name="class_id" required>
+                            <select class="form-control @error('kelas_id') is-invalid @enderror" name="kelas_id" required>
                                 <option disabled>Pilih kelas</option>
                                 @foreach ($class as $item)
                                 <option {{$data == $item->class_name ? "selected" : ""}} value="{{ $item->id }}">
                                     {{ $item->class_name }}</option>
                                 @endforeach
                             </select>
-                            @error('class_id')
+                            @error('kelas_id')
                             <div id="validationServer03Feedback" class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -60,7 +60,7 @@
                         <!-- textarea -->
                         <div class="form-group">
                             <label>Visi</label>
-                            <textarea class="form-control  @error('visi') is-invalid @enderror" rows="3" id="visi" name="visi" pellcheck="false" required>{!! old('nama_kandidat') == null ? $data->visi : old('visi') !!}</textarea>
+                            <textarea class="form-control  @error('visi') is-invalid @enderror" rows="3" id="visi" name="visi" pellcheck="false" required>{!! old('visi') == null ? $data->visi : old('visi') !!}</textarea>
                             @error('visi')
                             <div id="validationServer03Feedback" class="invalid-feedback">
                                 {{ $message }}
@@ -71,7 +71,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label>Misi</label>
-                            <textarea class="form-control  @error('misi') is-invalid @enderror" rows="3" id="misi" name="misi" spellcheck=" false" required>{!! old('nama_kandidat') == null ? $data->misi : old('misi') !!}</textarea>
+                            <textarea class="form-control  @error('misi') is-invalid @enderror" rows="3" id="misi" name="misi" spellcheck=" false" required>{!! old('misi') == null ? $data->misi : old('misi') !!}</textarea>
                             @error('misi')
                             <div id="validationServer03Feedback" class="invalid-feedback">
                                 {{ $message }}
@@ -79,6 +79,15 @@
                             @enderror
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="nama">Program kerja</label>
+                    <textarea id="program_kerja" class="form-control @error('program_kerja') is-invalid @enderror" rows="3" name="program_kerja" spellcheck=" false">{!! old('program_kerja') == null ? $data->misi : old('program_kerja') !!}</textarea>
+                    @error('program_kerja')
+                    <div id="validationServer03Feedback" class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <div class="row">
