@@ -43,7 +43,7 @@
                             <select class="form-control @error('kelas_id') is-invalid @enderror" name="kelas_id" required>
                                 <option disabled>Pilih kelas</option>
                                 @foreach ($class as $item)
-                                <option {{$data == $item->class_name ? "selected" : ""}} value="{{ $item->id }}">
+                                <option {{ $data->kelas_id == $item->id ? "selected" : "" }} value="{{ $item->id }}">
                                     {{ $item->class_name }}</option>
                                 @endforeach
                             </select>

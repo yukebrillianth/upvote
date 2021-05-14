@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Elements by BuildWith Angga</title>
+    <title>404</title>
+    <link rel="shortcut icon" href="{{ asset('elements/img/logo.png')}}">
     <link href="{{ asset('elements/css/bootstrap.min.css')}}" rel="stylesheet">
 </head>
 

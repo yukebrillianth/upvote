@@ -740,6 +740,7 @@
         </div>
 
     </section>
+    @include('sweetalert::alert')
     <script src="{{ asset('elements/js/bootstrap.bundle.min.js')}}"></script>
 </body>
 

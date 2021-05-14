@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{$setting[0]->nama_kegiatan}} | Login</title>
+    <link rel="shortcut icon" href="{{ asset('elements/img/logo.png')}}">
     <link href="{{ asset('elements/css/bootstrap.min.css')}}" rel="stylesheet">
 </head>
 
@@ -291,6 +292,7 @@
                 </div>
             </div>
         </div>
+        @include('sweetalert::alert')
     </section>
     <script src="{{ asset('elements/js/bootstrap.bundle.min.js')}}"></script>
     <script>

@@ -5,6 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{ asset('elements/img/logo.png')}}">
     <title>{{ $setting[0]->nama_kegiatan }} | Dashboard</title>
 
     <!-- Bootstrap CSS -->

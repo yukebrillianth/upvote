@@ -7,6 +7,7 @@ use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardController extends Controller
 {
@@ -24,8 +25,18 @@ class DashboardController extends Controller
         Jika role = super-administrator, maka akan menampilkan dashboard
         */
         if (Auth::user()->hasRole('participant')) {
-            $data = Candidate::all();
-            return view('form', compact('data'));
+            if (Auth::user()->has_blacklisted == 1) {
+                Auth::logout();
+                Alert::error('Anda Diblacklist Oleh Admin!');
+                return redirect()->route('login');
+            } elseif (Auth::user()->has_voted) {
+                Auth::logout();
+                Alert::error('Anda Sudah Memilih!');
+                return redirect()->route('home');
+            } else {
+                $data = Candidate::all();
+                return view('form', compact('data'));
+            }
         } elseif (Auth::user()->hasRole('super-administrator')) {
             $participants = User::whereRoleIs('participant')->count();
             $candidates = Candidate::get()->count();

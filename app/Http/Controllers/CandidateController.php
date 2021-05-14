@@ -118,7 +118,7 @@ class CandidateController extends Controller
     public function edit($id)
     {
         $class = kelas::all();
-        $data = Candidate::find($id)->first();
+        $data = Candidate::findOrfail($id);
 
         return view('dashboard.candidate.edit', compact('data', 'class'));
     }

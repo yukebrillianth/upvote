@@ -16,8 +16,7 @@
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('kelas') }}">Data Kelas</a></li>
-            <li class="breadcrumb-item active">Ubah</li>
+            <li class="breadcrumb-item active">Data Kelas</li>
         </ol>
     </div><!-- /.col -->
 </div><!-- /.row -->
@@ -38,6 +37,7 @@
                         <tr>
                             <th>Nama Kelas</th>
                             <th>Id</th>
+                            <th>Jumlah Kandidat</th>
                             <th>Jumlah Peserta</th>
                             <th>Aksi</th>
                         </tr>
@@ -47,6 +47,7 @@
                         <tr>
                             <td>{{$item->class_name}}</td>
                             <th>{{$item->id}}</th>
+                            <th>{{$item->candidate->count()}}</th>
                             <th>{{$item->participant->count()}}</th>
                             <td>
                                 <a id="{{$item->id}}" data-id="{{$item->id}}" class="badge badge-success text-white" role="button">Ubah</a>
@@ -59,6 +60,7 @@
                         <tr>
                             <th>Nama Kelas</th>
                             <th>Id</th>
+                            <th>Jumlah Kandidat</th>
                             <th>Jumlah Peserta</th>
                             <th>Aksi</th>
                         </tr>
@@ -136,7 +138,7 @@
                 title: 'Edit nama kelas',
                 input: 'text',
                 showCancelButton: true,
-                inputValue: res["class_name"],
+                inputValue: res[0],
                 inputAttributes: {
                     maxlength: 45,
                     minlength: 2,
@@ -148,7 +150,7 @@
                 }
             }).then((value) => {
                 if(value["value"]) {
-                    if(value["value"] != res["class_name"])
+                    if(value["value"] != res[0])
                     $.ajax({
                         type: 'PUT',
                         url: 'kelas/edit/'+id,

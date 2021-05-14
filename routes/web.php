@@ -48,7 +48,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super-admi
         Route::get('/', [KelasController::class, 'index'])->name('kelas');
         Route::post('/', [KelasController::class, 'store'])->name('storeKelas');
         Route::get('/add', [KelasController::class, 'create'])->name('addKelas');
-        Route::delete('/', [KelasController::class, 'deleteAll'])->name('deleteAll');
+        Route::delete('/', [KelasController::class, 'deleteAll'])->name('deleteAllKelas');
         Route::delete('{id}', [KelasController::class, 'destroy'])->name('deleteKelas');
         Route::get('edit/{id}', [KelasController::class, 'edit'])->name('editKelas');
         Route::put('edit/{id}', [KelasController::class, 'update'])->name('putKelas');
@@ -57,18 +57,20 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super-admi
         Route::get('/', [CandidateController::class, 'index'])->name('kandidat');
         Route::post('/', [CandidateController::class, 'store'])->name('storeKandidat');
         Route::get('/add', [CandidateController::class, 'create'])->name('addKandidat');
-        Route::delete('/', [CandidateController::class, 'deleteAll'])->name('deleteAll');
+        Route::delete('/', [CandidateController::class, 'deleteAll'])->name('deleteAllKandidat');
         Route::delete('{id}', [CandidateController::class, 'destroy'])->name('deleteKandidat');
         Route::get('edit/{id}', [CandidateController::class, 'edit'])->name('editKandidat');
         Route::put('edit/{id}', [CandidateController::class, 'update'])->name('putKandidat');
     });
     Route::prefix('peserta')->group(function () {
-        Route::get('/', [CandidateController::class, 'index'])->name('peserta');
-        Route::post('/', [CandidateController::class, 'store'])->name('storePeserta');
-        Route::get('/add', [CandidateController::class, 'create'])->name('addPeserta');
-        Route::delete('/', [CandidateController::class, 'deleteAll'])->name('deleteAll');
-        Route::delete('{id}', [CandidateController::class, 'destroy'])->name('deletePeserta');
-        Route::get('edit/{id}', [CandidateController::class, 'edit'])->name('editPeserta');
-        Route::put('edit/{id}', [CandidateController::class, 'update'])->name('putPeserta');
+        Route::get('/', [ParticipantController::class, 'index'])->name('peserta');
+        Route::post('/', [ParticipantController::class, 'store'])->name('storePeserta');
+        Route::get('/add', [ParticipantController::class, 'create'])->name('addPeserta');
+        Route::delete('/', [ParticipantController::class, 'deleteAll'])->name('deleteAllPeserta');
+        Route::delete('{id}', [ParticipantController::class, 'destroy'])->name('deletePeserta');
+        Route::put('{id}', [ParticipantController::class, 'blacklist'])->name('blacklistPeserta');
+        Route::put('reset/{id}', [ParticipantController::class, 'resetStatus'])->name('resetStatusPeserta');
+        Route::get('/edit/{id}', [ParticipantController::class, 'edit'])->name('editPeserta');
+        Route::put('edit/{id}', [ParticipantController::class, 'update'])->name('putPeserta');
     });
 });
