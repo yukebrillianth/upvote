@@ -461,7 +461,7 @@
                         <div class="modal-body" style="padding:	2rem; padding-top: 0; padding-bottom: 0;">
                             <ul class="navbar-nav responsive-header-4-1 me-auto mt-2 mt-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link">Selamat datang, <b>{{Auth::user()->name}}!</b></a>
+                                    <a class="nav-link">Selamat datang, <b>{{__(Auth::user()->name)}}!</b></a>
                                 </li>
                             </ul>
                         </div>
@@ -475,7 +475,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo-header-4-1">
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link">Selamat datang, <b>{{Auth::user()->name}}!</b></a>
+                        <a class="nav-link">Selamat datang, <b>{{__(Auth::user()->name)}}!</b></a>
                     </li>
                 </ul>
                 <a href="/logout" class="btn btn-fill-header-4-1">Keluar</a>
@@ -687,7 +687,7 @@
 
     <!-- Modal Data -->
     <div class="modal fade" id="modalData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content modal-data">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">1. Yuke Brilliant H.</h5>
@@ -697,10 +697,22 @@
                     <div class="modal-img">
                         <img class="cover img-fluid" src="https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top">
                     </div>
-                    <h3>Visi</h3>
-                    <p>Memajukan SMAN 1 Jakarta serta menjadikan OSIS sebagai wadah untuk menampung inspirasi, aspirasi, dan kreatifitas siswa-siswi SMAN Jakarta, dan juga membentuk kepribadian siswa-siswi yang sopan santun, berkarakter dan berbudaya</p>
-                    <h3>Misi</h3>
-                    <p>Merealisasikan atau mengaktifkan program kerja yang sebelumnya telah ada namun belum berjalan dengan lancar, kreatif dan inovatif, meningkatkan minat dan kreatifitas siswa melalui ekstrakurikuler untuk membentuk karakter yang aktif, menertibkan kembali peraturan yang sudah mulai longgar, meminimalisir anggapan senioritas, karena kakak kelas bukan ditakuti namun untuk disegani, dan meningkatkan peranan OSIS dalam kinerja dan kerjasama dalam rangka menciptakan kader-kader yang mampu menunjukkan identitas dan eksistensi baik dalam akademik dan non akademik.</p>
+                    <div class="card">
+                        <h5 class="card-header">
+                            Visi
+                        </h5>
+                        <div class="card-body">
+                            <p>Memajukan SMAN 1 Jakarta serta menjadikan OSIS sebagai wadah untuk menampung inspirasi, aspirasi, dan kreatifitas siswa-siswi SMAN Jakarta, dan juga membentuk kepribadian siswa-siswi yang sopan santun, berkarakter dan berbudaya</p>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <h5 class="card-header">
+                            Misi
+                        </h5>
+                        <div class="card-body">
+                            <p>Merealisasikan atau mengaktifkan program kerja yang sebelumnya telah ada namun belum berjalan dengan lancar, kreatif dan inovatif, meningkatkan minat dan kreatifitas siswa melalui ekstrakurikuler untuk membentuk karakter yang aktif, menertibkan kembali peraturan yang sudah mulai longgar, meminimalisir anggapan senioritas, karena kakak kelas bukan ditakuti namun untuk disegani, dan meningkatkan peranan OSIS dalam kinerja dan kerjasama dalam rangka menciptakan kader-kader yang mampu menunjukkan identitas dan eksistensi baik dalam akademik dan non akademik.</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary btn-select">Pilih</button>

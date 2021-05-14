@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Candidate;
 use App\Models\Setting;
 use App\Models\User;
-use GuzzleHttp\Middleware;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 
 class DashboardController extends Controller

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
@@ -19,7 +20,7 @@ class KelasController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Menampilkan data kelas
      *
      * @return \Illuminate\Http\Response
      */
@@ -30,7 +31,7 @@ class KelasController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form untuk membuat data kelas baru
      *
      * @return \Illuminate\Http\Response
      */
@@ -126,6 +127,11 @@ class KelasController extends Controller
         return redirect()->route('kelas');
     }
 
+    /**
+     * Remove all resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function deleteAll()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');

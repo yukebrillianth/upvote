@@ -38,6 +38,7 @@
                         <tr>
                             <th>Nama Kelas</th>
                             <th>Id</th>
+                            <th>Jumlah Peserta</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -46,6 +47,7 @@
                         <tr>
                             <td>{{$item->class_name}}</td>
                             <th>{{$item->id}}</th>
+                            <th>{{$item->participant->count()}}</th>
                             <td>
                                 <a id="{{$item->id}}" data-id="{{$item->id}}" class="badge badge-success text-white" role="button">Ubah</a>
                                 <a href="#" class="badge badge-danger btn-del text-white" id="singledel" data-id="{{ $item->id }}" role="button">Hapus</a>
@@ -57,6 +59,7 @@
                         <tr>
                             <th>Nama Kelas</th>
                             <th>Id</th>
+                            <th>Jumlah Peserta</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>

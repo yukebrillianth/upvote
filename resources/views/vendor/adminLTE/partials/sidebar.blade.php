@@ -31,18 +31,26 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{URL::route('kandidat')}}" class="nav-link {{ (request()->is('dashboard/kandidat*')) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user-tie"></i>
+                        <p>
+                            Kandidat
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{URL::route('kelas')}}" class="nav-link {{ (request()->is('dashboard/kelas*')) ? 'active' : '' }}">
-                        <i class="fas fa-users"></i>
+                        <i class="nav-icon fas fa-user-friends"></i>
                         <p>
                             Kelas
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{URL::route('kandidat')}}" class="nav-link {{ (request()->is('dashboard/kandidat*')) ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-user-tie"></i>
+                    <a href="{{URL::route('peserta')}}" class="nav-link {{ (request()->is('dashboard/peserta*')) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Kandidat
+                            Peserta
                         </p>
                     </a>
                 </li>

@@ -164,6 +164,16 @@
                 color: #2A3240;
             }
 
+            .return-to-home {
+                color: #CACBCE;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .return-to-home:hover {
+                color: #FF7C57 !important;
+            }
+
             .green-bottom-caption-content-3-5 {
                 color: #FF7C57;
                 font-weight: 500;
@@ -263,7 +273,7 @@
                                 <input class="input-field-content-3-5 @error('password') is-invalid @enderror" type="password" name="password" id="password" placeholder="Password Anda" minlength="6" required>
                                 <div id="passwordToggle">
                                     <svg style="margin-left: 0.75rem; cursor:pointer" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 7C0.555556 4.66667 3.33333 0 10 0C16.6667 0 19.4444 4.66667 20 7C19.4444 9.52778 16.6667 14 10 14C3.31853 14 0.555556 9.13889 0 7ZM10 5C8.89543 5 8 5.89543 8 7C8 8.10457 8.89543 9 10 9C11.1046 9 12 8.10457 12 7C12 6.90536 11.9934 6.81226 11.9807 6.72113C12.2792 6.89828 12.6277 7 13 7C13.3608 7 13.6993 6.90447 13.9915 6.73732C13.9971 6.82415 14 6.91174 14 7C14 9.20914 12.2091 11 10 11C7.79086 11 6 9.20914 6 7C6 4.79086 7.79086 3 10 3C10.6389 3 11.2428 3.14979 11.7786 3.41618C11.305 3.78193 11 4.35535 11 5C11 5.09464 11.0066 5.18773 11.0193 5.27887C10.7208 5.10171 10.3723 5 10 5Z" fill="#CACBCE" />
+                                        <path id="iconToggle" fill-rule="evenodd" clip-rule="evenodd" d="M0 7C0.555556 4.66667 3.33333 0 10 0C16.6667 0 19.4444 4.66667 20 7C19.4444 9.52778 16.6667 14 10 14C3.31853 14 0.555556 9.13889 0 7ZM10 5C8.89543 5 8 5.89543 8 7C8 8.10457 8.89543 9 10 9C11.1046 9 12 8.10457 12 7C12 6.90536 11.9934 6.81226 11.9807 6.72113C12.2792 6.89828 12.6277 7 13 7C13.3608 7 13.6993 6.90447 13.9915 6.73732C13.9971 6.82415 14 6.91174 14 7C14 9.20914 12.2091 11 10 11C7.79086 11 6 9.20914 6 7C6 4.79086 7.79086 3 10 3C10.6389 3 11.2428 3.14979 11.7786 3.41618C11.305 3.78193 11 4.35535 11 5C11 5.09464 11.0066 5.18773 11.0193 5.27887C10.7208 5.10171 10.3723 5 10 5Z" fill="#CACBCE" />
                                     </svg>
                                 </div>
                                 @error('password')
@@ -275,6 +285,9 @@
                         </div>
                         <button class="btn btn-fill-content-3-5 d-block w-100" type="submit">Masuk ke akun saya</button>
                     </form>
+                    <p class="mt-5 text-center bottom-caption">
+                        <a href="{{route('home')}}" class="return-to-home">Kembali ke Beranda</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -283,12 +296,15 @@
     <script>
         const inputPassword = document.querySelector("#password");
         const togglePassword = document.querySelector("#passwordToggle");
+        const iconToggle = document.querySelector("#iconToggle");
 
     togglePassword.addEventListener("click", function () {
       if (inputPassword.type === "password") {
         inputPassword.type = "text";
-      } else {
+        iconToggle.setAttribute("fill", "#FF7C57");
+    } else {
         inputPassword.type = "password";
+        iconToggle.setAttribute("fill", "#CACBCE");
       }
     });
     </script>

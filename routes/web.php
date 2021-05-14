@@ -5,6 +5,7 @@ use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\ParticipantController;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -60,5 +61,14 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super-admi
         Route::delete('{id}', [CandidateController::class, 'destroy'])->name('deleteKandidat');
         Route::get('edit/{id}', [CandidateController::class, 'edit'])->name('editKandidat');
         Route::put('edit/{id}', [CandidateController::class, 'update'])->name('putKandidat');
+    });
+    Route::prefix('peserta')->group(function () {
+        Route::get('/', [CandidateController::class, 'index'])->name('peserta');
+        Route::post('/', [CandidateController::class, 'store'])->name('storePeserta');
+        Route::get('/add', [CandidateController::class, 'create'])->name('addPeserta');
+        Route::delete('/', [CandidateController::class, 'deleteAll'])->name('deleteAll');
+        Route::delete('{id}', [CandidateController::class, 'destroy'])->name('deletePeserta');
+        Route::get('edit/{id}', [CandidateController::class, 'edit'])->name('editPeserta');
+        Route::put('edit/{id}', [CandidateController::class, 'update'])->name('putPeserta');
     });
 });

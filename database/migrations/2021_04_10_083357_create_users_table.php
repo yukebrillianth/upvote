@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('has_voted')->default(false);
             $table->boolean('has_blacklisted')->default(false);
-            $table->unsignedBigInteger('class_id')->nullable(true);
-            $table->foreign('class_id')
+            $table->unsignedBigInteger('kelas_id')->nullable(true);
+            $table->foreign('kelas_id')
                 ->references('id')
                 ->on('kelas')
                 ->onCascade('restrict');

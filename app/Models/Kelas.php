@@ -10,4 +10,9 @@ class Kelas extends Model
     use HasFactory;
 
     protected $fillable = ['class_name'];
+
+    public function participant()
+    {
+        return $this->hasMany(User::class);
+    }
 }
