@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{$setting[0]->nama_kegiatan}} | Home</title>
+    <link rel="shortcut icon" href="{{ asset('elements/img/logo.png')}}">
     <link href="{{ asset('elements/css/bootstrap.min.css')}}" rel="stylesheet">
 </head>
 
@@ -548,11 +549,11 @@
                                 Masuk Menggunakan Token Anda
                             </h4>
                             <p class="text-caption-content-3-1 d-sm-inline d-none">
-                                Buka halaman login, lalu masukkan token dan password <br> anda yang
+                                Buka halaman login, lalu masukkan token atau Email dan password <br> anda yang
                                 sudah diberi oleh panitia.
                             </p>
                             <p class="text-caption-content-3-1 d-sm-none d-inline">
-                                Buka halaman login, lalu masukkan token dan password <br> anda yang
+                                Buka halaman login, lalu masukkan token atau Email dan password <br> anda yang
                                 sudah diberi oleh panitia.
                             </p>
                         </li>
