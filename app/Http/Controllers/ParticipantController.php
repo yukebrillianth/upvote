@@ -25,8 +25,9 @@ class ParticipantController extends Controller
 
     public static function onlineUsers()
     {
+        $admin = User::whereRoleIs('super-administrator')->count();
         $res =  Active::users()->count();
-        return response($res - 1);
+        return response($res - $admin);
     }
 
     public function index()
