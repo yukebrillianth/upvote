@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel as Excel;
 use App\Models\Kelas;
 use App\Models\Setting;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use Rainwater\Active\Active;
@@ -155,5 +156,20 @@ class ParticipantController extends Controller
 
         Alert::success('Data berhasil dihapus!');
         return redirect()->back();
+    }
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'peserta.xlsx');
+    }
+
+    public function import() 
+    {
+        Excel::import(new UsersImport, request()->file('file'));
+        
+        return response()->json([
+            'code' => 201,
+            'status' => 'success'
+            ]);
     }
 }

@@ -26,7 +26,17 @@
 @section('content')
 <div class="card">
   <div class="card-header">
-    <a class="btn btn-success" id="btnAdd" href="{{ Route('addPeserta') }}">Tambah Data</a>
+    <div class="btn-group">
+      <a href="{{ Route('addPeserta') }}" class="btn btn-success">Tambah Data</a>
+      <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu" role="menu" style="">
+        <a class="dropdown-item" id="btnImport" href="#">Import Excel</a>
+        <button type="button" class="dropdown-item" id="btnDownload" href="#">Download Template Excel</button>
+      </div>
+    </div>
+    <button id="btnExport" class="btn btn-info ml-2"><i class="far fa-file-excel"></i>&nbsp; Export Excel</button>
     <button id="btndelall" class="btn btn-default ml-2"><i class="fas fa-trash"></i> Hapus Semua</button>
   </div>
   <!-- /.card-header -->
@@ -112,6 +122,7 @@
 <script src="{{ asset('adminLTE/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('adminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.fileDownload/1.4.2/jquery.fileDownload.min.js" integrity="sha512-MZrUNR8jvUREbH8PRcouh1ssNRIVHYQ+HMx0HyrZTezmoGwkuWi1XoaRxWizWO8m0n/7FXY2SSAsr2qJXebUcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- page script -->
 <script>
@@ -201,5 +212,58 @@
       }
     })
     });
+
+    /* 
+    * Export all user data to excel file 
+    * Send request to export endpoint without CSRF protection
+    */
+
+   $('#btnExport').click( () => {
+      $.fileDownload('{{route("exportPeserta")}}');
+   }); // Selector
+
+   /* 
+    * Upload User File
+    * Upload File, then store to upload endpoint
+    */
+   $('#btnImport').click(() => {
+    Swal.fire({
+      title: 'Pilih File',
+      input: 'file',
+      inputAttributes: {
+        'accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'aria-label': 'Upload File Excel'
+      }
+    }).then((file) => {
+        if (file.value) {
+            var formData = new FormData();
+            var file = $('.swal2-file')[0].files[0];
+            formData.append("file", file);
+            $.ajax({
+                headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                method: 'post',
+                url: '{{route("importPeserta")}}',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: (res) => {
+                    Swal.fire('Uploaded', 'Your file have been uploaded', 'success').then(() => {
+                      location.reload();
+                    });
+                },
+                error: (err) => {
+                    Swal.fire({ type: 'error', title: 'Oops...', text: 'Something went wrong!' })
+                }
+            })
+        }
+    }) // Swal
+   }) // Selector
+
+   /* 
+    * Download User Import Template
+    */
+    $('#btnDownload').click( () => {
+      $.fileDownload('/storage/template/Template%20Import%20Peserta%202021.xlsx');
+   }); // Selector
 </script>
 @endpush

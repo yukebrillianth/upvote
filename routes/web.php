@@ -72,5 +72,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super-admi
         Route::put('reset/{id}', [ParticipantController::class, 'resetStatus'])->name('resetStatusPeserta');
         Route::get('/edit/{id}', [ParticipantController::class, 'edit'])->name('editPeserta');
         Route::put('edit/{id}', [ParticipantController::class, 'update'])->name('putPeserta');
+        Route::get('export/excel', [ParticipantController::class, 'export'])->name('exportPeserta');
+        Route::post('import/excel', [ParticipantController::class, 'import'])->name('importPeserta');
     });
 });
