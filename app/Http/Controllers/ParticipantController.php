@@ -125,6 +125,7 @@ class ParticipantController extends Controller
             ->findOrfail($id)
             ->update(['has_blacklisted' => true]);
 
+        Alert::toast('Sukses Diblacklist','success');
         return redirect()->route('peserta');
     }
 
@@ -135,14 +136,16 @@ class ParticipantController extends Controller
             'has_blacklisted' => false,
             'has_voted' => false
         ]);
+        Vote::where('users_id', '=', $id);
         Vote::where('users_id', $id)->delete();
 
+        Alert::toast('Status Sukses Direset','success');
         return redirect()->route('peserta');
     }
 
     public function destroy($id)
     {
-        $data = User::whereRoleIs('participant')
+        User::whereRoleIs('participant')
             ->findOrfail($id)
             ->delete();
 

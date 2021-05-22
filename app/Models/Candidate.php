@@ -11,7 +11,7 @@ class Candidate extends Model
     protected $fillable = [
         'nama_kandidat',
         'visi', 'misi',
-        'program_kerja',
+        'slogan',
         'image',
         'kelas_id'
     ];
@@ -19,5 +19,10 @@ class Candidate extends Model
     public function kelas()
     {
         return $this->belongsTo(Kelas::class);
+    }
+
+    public function jumlah_pemilih()
+    {
+        return $this->belongsToMany(User::class, 'votes', 'candidates_id', 'users_id');
     }
 }

@@ -42,7 +42,7 @@
                             <select class="form-control @error('kelas_id') is-invalid @enderror" name="kelas_id" value="{{ old('kelas_id') }}">
                                 <option disabled selected>Pilih kelas</option>
                                 @foreach ($class as $item)
-                                <option value="{{ $item->id }}">{{ $item->class_name }}</option>
+                                <option {{ old('kelas_id') == $item->id ? "selected" : "" }} value="{{ $item->id }}">{{ $item->class_name }}</option>
                                 @endforeach
                             </select>
                             @error('kelas_id')
@@ -79,9 +79,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="nama">Program kerja</label>
-                    <textarea id="program_kerja" class="form-control @error('program_kerja') is-invalid @enderror" rows="3" name="program_kerja" spellcheck=" false">{{ old('program_kerja') }}</textarea>
-                    @error('program_kerja')
+                    <label for="nama">Slogan</label>
+                    <input type="text" name="slogan" id="slogan" class="form-control @error('slogan') is-invalid @enderror" value="{{ old('slogan') }}" placeholder="Masukkan slogan kandidat" required autofocus>
+                    @error('slogan')
                     <div id="validationServer03Feedback" class="invalid-feedback">
                         {{ $message }}
                     </div>

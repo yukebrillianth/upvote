@@ -55,14 +55,10 @@
                     @elseif ($item->kelas->class_name)
                     <td>{{ $item->kelas->class_name }}</td>
                     @endif
-                    @if (!$item["jumlah_pemilih"])
-                    <td>0</td>
-                    @elseif ($item["jumlah_pemilih"])
-                    <td>{{ dd($item["jumlah_pemilih"]) }}</td>
-                    @endif
+                    <td>{{ $item["jumlah_pemilih_count"] }}</td>
                     <td>
                         <a href="{{ Route('editKandidat', ['id' => $item->id]) }}" class="badge badge-success text-white" role="button">Ubah</a>
-                        <a href="#" class="badge badge-danger btn-del text-white" id="singledel" data-id="{{ $item->id }}" role="button">Hapus</a>
+                        <a class="badge badge-danger btn-del text-white" id="singledel" onclick="singleDelete({{$item->id}})" role="button">Hapus</a>
                     </td>
                 </tr>
                 @endforeach
@@ -142,22 +138,22 @@
     })
     });
   
-    $('.btn-del').click( function() {
-      Swal.fire({
-      title: 'Apakah anda yakin?',
-      text: "Anda tidak akan dapat mengembalikan ini!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Ya, hapus!'
+    const singleDelete = (id) => {
+        console.log(id)
+        Swal.fire({
+        title: 'Apakah anda yakin?',
+        text: "Anda tidak akan dapat mengembalikan ini!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus!'
     }).then((result) => {
       if (result.isConfirmed) {
-        const id = $(this).data("id");
         $("#delete").attr('action', 'kandidat/'+id).submit();
       }
     })
-    });
+    }
   
   
 </script>

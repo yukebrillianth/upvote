@@ -81,9 +81,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="nama">Program kerja</label>
-                    <textarea id="program_kerja" class="form-control @error('program_kerja') is-invalid @enderror" rows="3" name="program_kerja" spellcheck=" false">{!! old('program_kerja') == null ? $data->misi : old('program_kerja') !!}</textarea>
-                    @error('program_kerja')
+                    <label for="nama">Slogan</label>
+                    <input type="text" name="slogan" id="slogan" class="form-control @error('slogan') is-invalid @enderror" value="{{ old('Slogan') == null ? $data->slogan : old('Slogan') }}" placeholder="Masukkan slogan kandidat" required autofocus>
+                    @error('slogan')
                     <div id="validationServer03Feedback" class="invalid-feedback">
                         {{ $message }}
                     </div>

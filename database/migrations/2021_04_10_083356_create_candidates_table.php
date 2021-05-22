@@ -19,7 +19,7 @@ class CreateCandidatesTable extends Migration
             $table->string('nama_kandidat')->nullable(false);
             $table->longText('visi')->nullable(false);
             $table->longText('misi')->nullable(false);
-            $table->longText('program_kerja');
+            $table->longText('slogan');
             $table->string('image')->nullable(false);
             $table->unsignedBigInteger('kelas_id');
             $table->foreign('kelas_id')

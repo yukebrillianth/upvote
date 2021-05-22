@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Candidate;
 use App\Models\Kelas;
 use App\Models\Setting;
+use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\View;
+use stdClass;
 
 class CandidateController extends Controller
 {
@@ -27,7 +30,7 @@ class CandidateController extends Controller
      */
     public function index()
     {
-        $data = Candidate::get();
+        $data = Candidate::withCount('jumlah_pemilih')->get();
         return view('dashboard.candidate.index', compact('data'));
     }
 
@@ -55,7 +58,7 @@ class CandidateController extends Controller
                 'nama_kandidat' => 'required|max:45|min:4',
                 'visi' => 'required|min:20|max:9000|',
                 'misi' => 'required|min:20|max:9000|',
-                'program_kerja' => 'required|min:20|max:6000|',
+                'slogan' => 'required|min:20|max:255|',
                 'image' => 'required|max:4000|mimes:png,jpg,jpeg',
             ],
             [
@@ -68,9 +71,9 @@ class CandidateController extends Controller
                 'misi.required' => 'Misi harus diisi!',
                 'misi.min' => 'Misi harus lebih dari 20 karakter!',
                 'misi.max' => 'Misi harus kurang dari 900 karakter!',
-                'program_kerja.required' => 'Program kerja harus diisi!',
-                'program_kerja.min' => 'Program kerja harus lebih dari 20 karakter!',
-                'program_kerja.max' => 'Program kerja harus kurang dari 900 karakter!',
+                'slogan.required' => 'Slogan harus diisi!',
+                'slogan.min' => 'Slogan harus lebih dari 20 karakter!',
+                'slogan.max' => 'Slogan harus kurang dari 255 karakter!',
                 'image.required' => 'Gambar harus diisi!',
                 'image.max' => 'Ukuran maksimal 4 MB!',
                 'image.mimes' => 'Format hanya boleh png, jpg, jpeg!',
@@ -89,7 +92,7 @@ class CandidateController extends Controller
             'nama_kandidat' => $request->nama_kandidat,
             'visi' => $request->get('visi'),
             'misi' => $request->get('misi'),
-            'program_kerja' => $request->get('program_kerja'),
+            'slogan' => $request->get('slogan'),
             'image' => $image,
             'kelas_id' => $request->get('kelas_id')
         ]);
@@ -137,7 +140,7 @@ class CandidateController extends Controller
                 'nama_kandidat' => 'required|max:45|min:4',
                 'visi' => 'required|min:20|max:9000|',
                 'misi' => 'required|min:20|max:9000|',
-                'program_kerja' => 'required|min:20|max:6000|',
+                'slogan' => 'required|min:20|max:255|',
                 'image' => 'max:4000|mimes:png,jpg,jpeg',
             ],
             [
@@ -150,9 +153,9 @@ class CandidateController extends Controller
                 'misi.required' => 'Misi harus diisi!',
                 'misi.min' => 'Misi harus lebih dari 20 karakter!',
                 'misi.max' => 'Misi harus kurang dari 900 karakter!',
-                'program_kerja.required' => 'Program kerja harus diisi!',
-                'program_kerja.min' => 'Program kerja harus lebih dari 20 karakter!',
-                'program_kerja.max' => 'Program kerja harus kurang dari 900 karakter!',
+                'slogan.required' => 'Slogan harus diisi!',
+                'slogan.min' => 'Slogan harus lebih dari 20 karakter!',
+                'slogan.max' => 'Slogan harus kurang dari 255 karakter!',
                 'image.max' => 'Ukuran maksimal 4 MB!',
                 'image.mimes' => 'Format hanya boleh png, jpg, jpeg!',
 
@@ -174,11 +177,13 @@ class CandidateController extends Controller
             $image = $data->image;
         }
 
+        // dd($request);
+
         Candidate::findOrfail($id)->update([
             'nama_kandidat' => $request->nama_kandidat,
             'visi' => $request->get('visi'),
             'misi' => $request->get('misi'),
-            'program_kerja' => $request->get('program_kerja'),
+            'slogan' => $request->get('slogan'),
             'image' => $image,
             'kelas_id' => $request->get('kelas_id')
         ]);
@@ -196,10 +201,16 @@ class CandidateController extends Controller
     public function destroy($id)
     {
         $data = Candidate::findOrfail($id);
-        Storage::delete(['public/' . $data->image]);
-        $data->delete();
+        try {
+            $data->delete();
+        } catch (\Throwable $th) {
+            Alert::error('Data Gagal Dihapus!', 'Pemilih harus dihapus terlebih dahulu!');
+            return redirect()->route('kandidat');
+        }
 
         Alert::success('Data Berhasil Dihapus!');
+        Storage::delete(['public/' . $data->image]);
+
         return redirect()->route('kandidat');
     }
 

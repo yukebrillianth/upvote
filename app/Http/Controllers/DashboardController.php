@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Candidate;
 use App\Models\Setting;
 use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -35,6 +36,7 @@ class DashboardController extends Controller
                 return redirect()->route('home');
             } else {
                 $data = Candidate::all();
+                $vote = Vote::all()->count();
                 return view('form', compact('data'));
             }
         } elseif (Auth::user()->hasRole('super-administrator')) {

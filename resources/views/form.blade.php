@@ -485,51 +485,20 @@
 
         <div>
             <div class="mx-auto d-flex flex-lg-row flex-column hero-header-4-1">
-                <div class="row row-cols-1 row-cols-lg-4 row-cols-md-2 g-4">
-                    <div class="col">
+                <div class="row">
+                    @foreach ($data as $key => $item)
+                    <div class="col col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3">
                         <div class="card card-calon">
-                            <img class="cover img-fluid" src="https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80" class="card-img-top">
+                            <img style="min-width: 10vw;" class="cover img-fluid" src="{{ asset('storage/' . $item->image ) }}" class="card-img-top">
                             <div class="card-body">
-                                <h5 class="card-title candidate-name">1. Yuke Brilliant H.</h5>
+                                <h5 class="card-title candidate-name">{{$key+1}}. {{ $item->nama_kandidat }}</h5>
                                 <p class="slogan-title">Slogan :</p>
-                                <p class="slogan">"Menjadi orang hebat adalah tujuan kami"</p>
-                                <button type="button" class="btn btn-block btn-danger btn-vm" data-bs-toggle="modal" data-bs-target="#modalData">Selengkapnya</button>
+                                <p class="slogan">"{{$item->slogan}}"</p>
+                                <button type="button" class="btn btn-block btn-danger btn-vm" data-bs-toggle="modal" data-bs-target="#modalData{{$item->id}}">Selengkapnya</button>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card card-calon">
-                            <img class="cover img-fluid" src="https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title candidate-name">2. Nashwa Zahira</h5>
-                                <p class="slogan-title">Slogan :</p>
-                                <p class="slogan">"Menjadi orang hebat adalah tujuan kami"</p>
-                                <button type="button" class="btn btn-block btn-danger btn-vm" data-bs-toggle="modal" data-bs-target="#modalData">Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-calon">
-                            <img class="cover img-fluid" src="https://images.unsplash.com/photo-1494708001911-679f5d15a946?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title candidate-name">3. Maman Resing G.</h5>
-                                <p class="slogan-title">Slogan :</p>
-                                <p class="slogan">"Menjadi orang hebat adalah tujuan kami"</p>
-                                <button type="button" class="btn btn-block btn-danger btn-vm" data-bs-toggle="modal" data-bs-target="#modalData">Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card card-calon">
-                            <img class="cover img-fluid" src="https://images.unsplash.com/photo-1530450736320-e7bb9d46b1b1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1374&q=80" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title candidate-name">4. Eréndira Tovar</h5>
-                                <p class="slogan-title">Slogan :</p>
-                                <p class="slogan">"Menjadi orang hebat adalah tujuan kami"</p>
-                                <button type="button" class="btn btn-block btn-danger btn-vm" data-bs-toggle="modal" data-bs-target="#modalData">Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -686,24 +655,25 @@
 
     </section>
 
+    @foreach ($data as $key => $item)
     <!-- Modal Data -->
-    <div class="modal fade" id="modalData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modalData{{$item->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content modal-data">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">1. Yuke Brilliant H.</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">{{$key+1}}. {{$item->nama_kandidat}}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="modal-img">
-                        <img class="cover img-fluid" src="https://images.unsplash.com/photo-1542103749-8ef59b94f47e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top">
+                        <img class="cover img-fluid" src="{{ asset('storage/' . $item->image ) }}" class="card-img-top">
                     </div>
                     <div class="card">
                         <h5 class="card-header">
                             Visi
                         </h5>
                         <div class="card-body">
-                            <p>Memajukan SMAN 1 Jakarta serta menjadikan OSIS sebagai wadah untuk menampung inspirasi, aspirasi, dan kreatifitas siswa-siswi SMAN Jakarta, dan juga membentuk kepribadian siswa-siswi yang sopan santun, berkarakter dan berbudaya</p>
+                            {!!$item->visi!!}
                         </div>
                     </div>
                     <div class="card mt-3">
@@ -711,19 +681,33 @@
                             Misi
                         </h5>
                         <div class="card-body">
-                            <p>Merealisasikan atau mengaktifkan program kerja yang sebelumnya telah ada namun belum berjalan dengan lancar, kreatif dan inovatif, meningkatkan minat dan kreatifitas siswa melalui ekstrakurikuler untuk membentuk karakter yang aktif, menertibkan kembali peraturan yang sudah mulai longgar, meminimalisir anggapan senioritas, karena kakak kelas bukan ditakuti namun untuk disegani, dan meningkatkan peranan OSIS dalam kinerja dan kerjasama dalam rangka menciptakan kader-kader yang mampu menunjukkan identitas dan eksistensi baik dalam akademik dan non akademik.</p>
+                            {!!$item->misi!!}
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-select">Pilih</button>
-                    <!-- <button type="button" class="btn btn-tutup" data-bs-dismiss="modal">Tutup</button> -->
+                    <form id="formVote{{$item->id}}" action="{{route('vote')}}" method="post">
+                        @csrf
+                        <input type="text" name="candidate_id" value="{{$item->id}}" hidden>
+                        <input type="text" name="participant_id" value="{{Auth::user()->id}}" hidden>
+                    </form>
+                    <button id="{{$item->id}}" class="btn btn-primary btn-select btnVote">Pilih</button>
                 </div>
             </div>
         </div>
     </div>
+    @endforeach
 
+    <!-- jQuery -->
+    <script src="{{ asset('adminLTE/plugins/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('elements/js/bootstrap.bundle.min.js')}}"></script>
+    {{-- Page Script --}}
+    <script>
+        $('.btnVote').click( function() {
+            const id = $(this).attr('id');
+            $('#formVote'+id).submit()
+        }); // Selector
+    </script>
 </body>
 
 </html>
