@@ -144,8 +144,8 @@
 
             if (y < 0) {
                 y = 0
-            } else if (y > 100) {
-                y = 100
+            } else if (y > onlineUsers) {
+                y = onlineUsers
             }
     
             data.push(y)

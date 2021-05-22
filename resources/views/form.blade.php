@@ -486,19 +486,21 @@
         <div>
             <div class="mx-auto d-flex flex-lg-row flex-column hero-header-4-1">
                 <div class="row">
-                    @foreach ($data as $key => $item)
-                    <div class="col col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3">
-                        <div class="card card-calon">
-                            <img style="min-width: 10vw;" class="cover img-fluid" src="{{ asset('storage/' . $item->image ) }}" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title candidate-name">{{$key+1}}. {{ $item->nama_kandidat }}</h5>
-                                <p class="slogan-title">Slogan :</p>
-                                <p class="slogan">"{{$item->slogan}}"</p>
-                                <button type="button" class="btn btn-block btn-danger btn-vm" data-bs-toggle="modal" data-bs-target="#modalData{{$item->id}}">Selengkapnya</button>
+                    @forelse ($data as $key => $item)
+                        <div class="col col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3">
+                            <div class="card card-calon">
+                                <img style="min-width: 10vw;" class="cover img-fluid" src="{{ asset('storage/' . $item->image ) }}" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title candidate-name">{{$key+1}}. {{ $item->nama_kandidat }}</h5>
+                                    <p class="slogan-title">Slogan :</p>
+                                    <p class="slogan">"{{$item->slogan}}"</p>
+                                    <button type="button" class="btn btn-block btn-danger btn-vm" data-bs-toggle="modal" data-bs-target="#modalData{{$item->id}}">Selengkapnya</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
+                    @empty
+                        <h1 style="text-align: center;">Tidak Ada Kandidat</h1>
+                    @endforelse
                 </div>
             </div>
         </div>
