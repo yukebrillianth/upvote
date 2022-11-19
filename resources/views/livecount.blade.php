@@ -523,25 +523,25 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="card-info d-flex align-middle flex-column p-4 text-center">
-                                <h3>{{$data["peserta"]}}</h3>
+                                <h3 id="jumlahPeserta">{{$data["peserta"]}}</h3>
                                 <span>Jumlah Peserta</span>
                             </div>
                         </div>
                         <div class="col-sm">
                             <div class="card-info d-flex align-middle flex-column p-4 text-center">
-                                <h3>{{$data["online_users"]}}</h3>
+                                <h3 id="pesertaOnline">{{$data["online_users"]}}</h3>
                                 <span>Peserta Online</span>
                             </div>
                         </div>
                         <div class="col-sm">
                             <div class="card-info d-flex align-middle flex-column p-4 text-center">
-                                <h3>{{$data["sudah_memilih"]}}</h3>
+                                <h3 id="sudahMemilih">{{$data["sudah_memilih"]}}</h3>
                                 <span>Peserta Sudah Memilih</span>
                             </div>
                         </div>
                         <div class="col-sm">
                             <div class="card-info d-flex align-middle flex-column p-4 text-center">
-                                <h3>{{$data["belum_memilih"]}}</h3>
+                                <h3 id="belumMemilih">{{$data["belum_memilih"]}}</h3>
                                 <span>Peserta Belum Memilih</span>
                             </div>
                         </div>
@@ -560,7 +560,7 @@
                                     </h5>
                                     <p class="slogan-title">Kelas :</p>
                                     <p class="slogan">{{$item->slogan}}</p>
-                                    <span class="btn btn-block btn-danger btn-vm"
+                                    <span id="pps" data-id="{{$item->id}}" class="btn btn-block btn-danger btn-vm"
                                         style="cursor: default;">{{$item->jumlah_pemilih_count}}</span>
                                 </div>
                             </div>
@@ -724,6 +724,39 @@
     </section>
     @include('sweetalert::alert')
     <script src="{{ asset('elements/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- jQuery -->
+    <script src="{{ asset('adminLTE/plugins/jquery/jquery.min.js')}}"></script>
+    <script>
+        const jumlahPeserta = $("#jumlahPeserta");
+        const pesertaOnline = $("#pesertaOnline");
+        const sudahMemilih = $("#sudahMemilih");
+        const belumMemilih = $("#belumMemilih");
+        const count = document.querySelectorAll("#pps");
+
+        function doAjax() {
+            $.ajax({
+                    type: 'GET',
+                    url: 'livecountjson',
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function (data) {
+                        // console.log(data);
+                        jumlahPeserta.text(data.peserta)
+                        pesertaOnline.text(data.online_users)
+                        sudahMemilih.text(data.sudah_memilih)
+                        belumMemilih.text(data.belum_memilih)
+                        data.vote.map((data, key) => {
+                            count[key].innerText = data.jumlah_pemilih_count
+                        })
+                    },
+                    complete: function (data) {
+                            // Schedule the next
+                            setTimeout(doAjax, 2000);
+                    }
+            });
+        }
+        setTimeout(doAjax, 2000);
+    </script>
 </body>
 
 </html>

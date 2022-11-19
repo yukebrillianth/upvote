@@ -38,6 +38,7 @@ Route::get('/app', function () {
 Route::get('/', [BaseController::class, 'home'])->name('home');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/livecount', [VoteController::class, 'livecount'])->name('liveCount');
+Route::get('/livecountjson', [VoteController::class, 'liveCountJson'])->name('liveCountJson');
 Route::get('keluar', [BaseController::class, 'logout'])->name('keluar')->middleware('auth');
 
 // Route group dengan role participant

@@ -54,7 +54,6 @@ class VoteController extends Controller
 
     public function livecount()
     {
-        $this->middleware('guest');
         $participants = User::whereRoleIs('participant')->count();
         $candidates = Candidate::get()->count();
         $has_voted = User::where('has_voted', true)->whereRoleIs('participant')->count();
@@ -69,5 +68,25 @@ class VoteController extends Controller
         ];
         $vote = Candidate::withCount('jumlah_pemilih')->get();
         return view('livecount', compact('data', 'vote'));
+    }
+
+    public function liveCountJson()
+    {
+        $participants = User::whereRoleIs('participant')->count();
+        $candidates = Candidate::get()->count();
+        $has_voted = User::where('has_voted', true)->whereRoleIs('participant')->count();
+        $no_voted = User::where('has_voted', false)->whereRoleIs('participant')->count();
+        $admin = User::whereRoleIs('super-administrator')->count();
+        $onlineUsers = Active::users()->count() - $admin;
+        $vote = Candidate::select('id')->withCount('jumlah_pemilih')->get();
+        $data = [
+            "peserta" => $participants,
+            "online_users" => $onlineUsers,
+            "sudah_memilih" => $has_voted,
+            "belum_memilih" => $no_voted,
+            "vote" => $vote
+        ];
+
+        return response()->json($data);
     }
 }
