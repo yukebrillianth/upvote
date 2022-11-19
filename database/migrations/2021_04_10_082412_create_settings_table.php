@@ -19,8 +19,7 @@ class CreateSettingsTable extends Migration
             $table->string('nama_instansi')->default('SMP Negeri 1 UpVote')->nullable(false);
             $table->string('periode')->default('2021 - 2022')->nullable(true);
             $table->string('nama_kegiatan', 255)->default('Pemilihan Ketua Osis')->nullable(false);
-            $table->timestamp('tanggal_mulai')->nullable(true);
-            $table->timestamp('tanggal_selesai')->nullable(true);
+            $table->boolean('active')->default(true);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

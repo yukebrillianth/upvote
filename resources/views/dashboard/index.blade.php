@@ -29,7 +29,6 @@
       <div class="icon">
         <i class="fas fa-users"></i>
       </div>
-      <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -37,14 +36,13 @@
     <!-- small box -->
     <div class="small-box bg-success">
       <div class="inner">
-        <h3>{{$data['kandidat']}}</h3>
+        <h3 id="onlineUsers">{{$data['online_users']}}</h3>
 
-        <p>Jumlah Kandidat</p>
+        <p>Peserta Online</p>
       </div>
       <div class="icon">
-        <i class="fas fa-user-tie"></i>
+        <i class="fas fa-signal"></i>
       </div>
-      <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -59,7 +57,6 @@
       <div class="icon">
         <i class="fas fa-user-check"></i>
       </div>
-      <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -74,7 +71,6 @@
       <div class="icon">
         <i class="fas fa-user-clock"></i>
       </div>
-      <a href="#" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -104,6 +100,49 @@
   <!-- /.card-body-->
 </div>
 <!-- /.card -->
+
+<div class="card">
+  <div class="card-header border-transparent">
+    <h3 class="card-title">Latest User Activities</h3>
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="collapse">
+        <i class="fas fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-tool" data-card-widget="remove">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table m-0">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Alamat Ip</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody id="lastActivity">
+          @foreach ($data['userActivity'] as $key => $item)
+          <tr id="{{$key}}">
+            <td>{{$item->user->name}}</td>
+            <td>{{$item->userIp}}</td>
+            <td>{{$item->details}}</td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="card-footer clearfix">
+    <a href="{{route('peserta')}}" class="btn btn-sm btn-info float-left">Lihat Semua Peserta</a>
+  </div>
+
+</div>
 @endsection
 
 @push('scripts')
@@ -134,9 +173,10 @@
                 type: 'GET',
                 async: false,
                 success : function(res) {
-                    onlineUsers.push(res)
-            }
-        })
+                  $('#onlineUsers').text(res)
+                  onlineUsers.push(res)
+                }
+            });
   
         // Do a random walk
         while (data.length < totalPoints) {
@@ -229,5 +269,37 @@
         + '<br>'
         + Math.round(series.percent) + '%</div>'
     }
+</script>
+<script>
+  const lastActivity = $('#lastActivity');
+
+  function doAjax() {
+      $.ajax({
+              type: 'GET',
+              url: 'dashboard/lastactivity.json',
+              data: $(this).serialize(),
+              dataType: 'json',
+              success: function (data) {
+                  lastActivity.children().remove();
+                  data.map((key) => {
+                    lastActivity.append(
+                      `
+                      <tr id="${key.id}">
+                        <td>${key.user.name}</td>
+                        <td>${key.userIp}</td>
+                        <td>${key.details}</td>
+                      </tr>
+                      `
+                    );
+                  });
+              },
+              complete: function (data) {
+                      // Schedule the next
+                      setTimeout(doAjax, 2000);
+              }
+      });
+  }
+  setTimeout(doAjax, 2000);
+    
 </script>
 @endpush

@@ -156,7 +156,7 @@
         .slogan {
             font-size: 16px;
             font-weight: 300;
-            font-style: italic;
+            /* font-style: italic; */
         }
 
         .btn-vm {
@@ -445,16 +445,19 @@
             <a>
                 <img style="margin-right:0.75rem" src="{{ asset('elements/img/logo.png')}}" alt="UpVote-Logo">
             </a>
-            <button class=" navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#targetModal-header-4-1">
+            <button class=" navbar-toggler" type="button" data-bs-toggle="modal"
+                data-bs-target="#targetModal-header-4-1">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="modal-header-4-1 modal fade" id="targetModal-header-4-1" tabindex="-1" role="dialog" aria-labelledby="targetModalLabel-header-4-1" aria-hidden="true">
+            <div class="modal-header-4-1 modal fade" id="targetModal-header-4-1" tabindex="-1" role="dialog"
+                aria-labelledby="targetModalLabel-header-4-1" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content modal-content-header-4-1">
                         <div class="modal-header" style="padding:	2rem; padding-bottom: 0;">
                             <a class="modal-title" id="targetModalLabel-header-4-1">
-                                <img style="margin-top:0.5rem" src="{{ asset('elements/img/logo.png')}}" alt="UpVote-Logo">
+                                <img style="margin-top:0.5rem" src="{{ asset('elements/img/logo.png')}}"
+                                    alt="UpVote-Logo">
                             </a>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             </button>
@@ -467,7 +470,7 @@
                             </ul>
                         </div>
                         <div class="modal-footer" style="padding:	2rem; padding-top: 0.75rem">
-                            <a href="/logout" class="btn btn-fill-header-4-1">Keluar</a>
+                            <a href="/keluar" class="btn btn-fill-header-4-1">Keluar</a>
                         </div>
                     </div>
                 </div>
@@ -479,7 +482,7 @@
                         <a class="nav-link">Selamat datang, <b>{{__(Auth::user()->name)}}!</b></a>
                     </li>
                 </ul>
-                <a href="/logout" class="btn btn-fill-header-4-1">Keluar</a>
+                <a href="/keluar" class="btn btn-fill-header-4-1">Keluar</a>
             </div>
         </nav>
 
@@ -487,19 +490,21 @@
             <div class="mx-auto d-flex flex-lg-row flex-column hero-header-4-1">
                 <div class="row">
                     @forelse ($data as $key => $item)
-                        <div class="col col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3">
-                            <div class="card card-calon">
-                                <img style="min-width: 10vw;" class="cover img-fluid" src="{{ asset('storage/' . $item->image ) }}" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="card-title candidate-name">{{$key+1}}. {{ $item->nama_kandidat }}</h5>
-                                    <p class="slogan-title">Slogan :</p>
-                                    <p class="slogan">"{{$item->slogan}}"</p>
-                                    <button type="button" class="btn btn-block btn-danger btn-vm" data-bs-toggle="modal" data-bs-target="#modalData{{$item->id}}">Selengkapnya</button>
-                                </div>
+                    <div class="col col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mb-4">
+                        <div class="card card-calon">
+                            <img style="min-width: 10vw;" class="cover img-fluid"
+                                src="{{ asset('storage/' . $item->image ) }}" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title candidate-name">{{$key+1}}. {{ $item->nama_kandidat }}</h5>
+                                <p class="slogan-title">Kelas :</p>
+                                <p class="slogan">{{$item->slogan}}</p>
+                                <button type="button" class="btn btn-block btn-danger btn-vm" data-bs-toggle="modal"
+                                    data-bs-target="#modalData{{$item->id}}">Selengkapnya</button>
                             </div>
                         </div>
+                    </div>
                     @empty
-                        <h1 style="text-align: center;">Tidak Ada Kandidat</h1>
+                    <h1 style="text-align: center;">Tidak Ada Kandidat</h1>
                     @endforelse
                 </div>
             </div>
@@ -641,7 +646,8 @@
                 <div class="d-flex title-font font-medium align-items-center" style="cursor: pointer;">
                     <img src="{{ asset('elements/img/logo.png')}}" alt="UpVote-Logo">
                 </div>
-                <nav class="mx-auto d-flex flex-wrap align-items-center justify-content-center footer-responsive-space-footer-2-1">
+                <nav
+                    class="mx-auto d-flex flex-wrap align-items-center justify-content-center footer-responsive-space-footer-2-1">
                     <a class="footer-link-footer-2-1" style="text-decoration: none;">Terms of Service</a>
                     <span style="margin-right:1.25rem">|</span>
                     <a class="footer-link-footer-2-1" style="text-decoration: none;">Privacy Policy</a>
@@ -659,7 +665,8 @@
 
     @foreach ($data as $key => $item)
     <!-- Modal Data -->
-    <div class="modal fade" id="modalData{{$item->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="modalData{{$item->id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content modal-data">
                 <div class="modal-header">

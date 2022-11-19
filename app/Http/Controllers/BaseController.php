@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidate;
 use App\Models\Setting;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -22,8 +23,13 @@ class BaseController extends Controller
         return view('home');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
+        $request->user()->activity()->create([
+            'user_id' => $request->user()->id,
+            'details' => 'Log out success at ' . Carbon::now('Asia/Jakarta')->locale('id'),
+            'userIp' => isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $request->getClientIp()
+        ]);
         Auth::logout();
         return redirect()->route('login');
     }

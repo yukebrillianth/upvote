@@ -30,13 +30,6 @@
                 line-height: 1.5rem;
             }
 
-            .header-4-1 .navbar-light .navbar-nav .nav-link:hover {
-                font-size: 18px;
-                color: #1d1e3c;
-                font-weight: 600;
-                line-height: 1.5rem;
-            }
-
             .header-4-1 .navbar-light .navbar-nav .active>.nav-link,
             .header-4-1 .navbar-light .navbar-nav .nav-link.active,
             .header-4-1 .navbar-light .navbar-nav .nav-link.show,
@@ -57,9 +50,25 @@
                 border: none;
             }
 
+            .modal-dialog .modal-content {
+                border-radius: 8px;
+                background-color: #FFFFFF;
+                border: none;
+            }
+
+            .modal-data {
+                padding: 10px;
+            }
+
+            .modal-footer {
+                justify-content: center;
+                align-items: center;
+            }
+
             .btn:focus,
             .btn:active {
                 outline: none !important;
+                box-shadow: none;
             }
 
             .btn-fill-header-4-1 {
@@ -85,6 +94,87 @@
                 line-height: 1.75rem;
                 padding: 12px 32px 12px 32px;
                 font-size: 18px;
+            }
+
+            .btn-select {
+                background-color: #FF7C57;
+                border: none;
+                border-radius: 0.5rem;
+                width: 20%;
+            }
+
+            .btn-select:hover {
+                background-color: #FF7C57;
+                color: #FFFFFF;
+                --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+                    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+            }
+
+            .btn-select:active,
+            .btn-select:focus {
+                background-color: #FF7C57;
+            }
+
+            .card-calon {
+                border: 2px solid #E5EBF9;
+                border-radius: 1rem;
+                padding: 5px;
+                transition: all 0.5s;
+            }
+
+            .candidate-name {
+                font-weight: 600;
+                margin-top: -10px;
+                margin-bottom: 20px;
+            }
+
+            .cover {
+                max-width: 100%;
+                height: auto;
+                border-radius: 1rem;
+                margin: 16px;
+            }
+
+            .modal-img {
+                display: flex;
+                justify-content: center;
+            }
+
+            .slogan-title {
+                color: #999aa4;
+                font-size: 16px;
+                font-weight: 300;
+                margin-top: -10px;
+                margin: -10px 0 10px 0;
+            }
+
+            .slogan {
+                font-size: 16px;
+                font-weight: 300;
+                /* font-style: italic; */
+            }
+
+            .btn-vm {
+                display: block;
+                width: 100%;
+                background-color: #FF7C57;
+                border: none;
+                border-radius: 1rem;
+            }
+
+            .btn-vm:hover {
+                background-color: #FF7C57;
+                color: #FFFFFF;
+                --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+                    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+            }
+
+            .btn-vm:focus {
+                background-color: #FF7C57;
             }
 
             .modal-header-4-1 .modal-dialog .modal-content {
@@ -229,6 +319,10 @@
                     border-radius: 12px;
                 }
 
+                .modal-body .cover {
+                    max-width: 100% !important;
+                }
+
                 .header-4-1 .navbar {
                     padding: 3rem 2rem;
                 }
@@ -269,6 +363,10 @@
                     padding: 3rem 4rem;
                 }
 
+                .modal-body .cover {
+                    max-width: 100% !important;
+                }
+
                 .hero-header-4-1 {
                     padding: 3rem 4rem 5rem 4rem;
                 }
@@ -296,6 +394,10 @@
                 .header-4-1 .navbar-expand-lg .navbar-nav .nav-link {
                     padding-right: 1.25rem;
                     padding-left: 1.25rem;
+                }
+
+                .modal-body .cover {
+                    max-width: 40% !important;
                 }
 
                 .header-4-1 .navbar {
@@ -334,6 +436,16 @@
                     margin-right: 2rem;
                 }
             }
+
+            .card-info {
+                background-color: white;
+                color: black;
+                border-radius: 0.25rem;
+                box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+                display: block;
+                margin-bottom: 20px;
+                position: relative;
+            }
         </style>
         <div class="header-4-1" style="font-family: 'Poppins', sans-serif;">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -359,13 +471,13 @@
                             </div>
                             <div class="modal-body" style="padding:	2rem; padding-top: 0; padding-bottom: 0;">
                                 <ul class="navbar-nav responsive-header-4-1 me-auto mt-2 mt-lg-0">
-                                    <li class="nav-item active">
+                                    <li class="nav-item {{Route::currentRouteNamed('home') ?  'active' : ''}}">
                                         <a class="nav-link" href="/">Beranda</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#tutorial">Tutorial</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <li class="nav-item {{Route::currentRouteNamed('liveCount') ?  'active' : ''}}">
                                         <a class="nav-link" href="{{URL::route('liveCount')}}">Live Count</a>
                                     </li>
                                 </ul>
@@ -385,13 +497,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo-header-4-1">
                     <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
+                        <li class="nav-item {{Route::currentRouteNamed('home') ?  'active' : ''}}">
                             <a class="nav-link" href="/">Beranda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#tutorial">Tutorial</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{Route::currentRouteNamed('liveCount') ?  'active' : ''}}">
                             <a class="nav-link" href="{{URL::route('liveCount')}}">Live Count</a>
                         </li>
                     </ul>
@@ -406,210 +518,59 @@
             </nav>
 
             <div>
-                <div class="mx-auto d-flex flex-lg-row flex-column hero-header-4-1">
-                    <!-- Left Column -->
-                    <div
-                        class="left-column-header-4-1 d-flex flex-lg-grow-1 flex-column align-items-lg-start text-lg-start align-items-center text-center">
-                        <h1 class="title-text-big-header-1 d-lg-inline d-none">{{$setting[0]->nama_kegiatan}}</h1>
-                        <h1 class="title-text-big-header-2 d-lg-inline d-none">{{$setting[0]->nama_instansi}}</h1>
-                        <h1 class="title-text-big-header-3 d-lg-inline d-none">{{$setting[0]->periode}}</h1>
-                        <h1 class="title-text-small-header-1 d-lg-none d-inline">{{$setting[0]->nama_kegiatan}}</h1>
-                        <h1 class="title-text-small-header-2 d-lg-none d-inline">{{$setting[0]->nama_instansi}}</h1>
-                        <h1 class="title-text-small-header-3 d-lg-none d-inline">{{$setting[0]->periode}}</h1>
-                        <div
-                            class="div-button-header-4-1 d-inline d-lg-flex align-items-center mx-lg-0 mx-auto justify-content-center">
-                            <a href="{{URL::route('login')}}"
-                                class="btn d-inline-flex mb-md-0 btn-try-header-4-1">Masuk</a>
-                            <a href="{{URL::route('liveCount')}}" class="btn btn-outline-header-4-1">
-                                <div class="d-flex align-items-center">
-                                    Live Count!
-                                </div>
-                            </a>
+                <!-- Small boxes (Stat box) -->
+                <div class="hero-header-4-1 mx-auto flex-lg-row flex-column py-0 ">
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="card-info d-flex align-middle flex-column p-4 text-center">
+                                <h3>{{$data["peserta"]}}</h3>
+                                <span>Jumlah Peserta</span>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="card-info d-flex align-middle flex-column p-4 text-center">
+                                <h3>{{$data["online_users"]}}</h3>
+                                <span>Peserta Online</span>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="card-info d-flex align-middle flex-column p-4 text-center">
+                                <h3>{{$data["sudah_memilih"]}}</h3>
+                                <span>Peserta Sudah Memilih</span>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="card-info d-flex align-middle flex-column p-4 text-center">
+                                <h3>{{$data["belum_memilih"]}}</h3>
+                                <span>Peserta Belum Memilih</span>
+                            </div>
                         </div>
                     </div>
-                    <!-- Right Column -->
-                    <div
-                        class="right-column-header-4-1 text-center d-flex justify-content-lg-end justify-content-center pe-0">
-                        <img id="img-fluid" style="display: block;max-width: 100%;height: auto;"
-                            src="{{ asset('elements/img/Header-4-1.png')}}" alt="">
+                </div>
+                <!-- /.row -->
+                <div class="mx-auto d-flex flex-lg-row flex-column hero-header-4-1">
+                    <div class="row">
+                        @forelse ($vote as $key => $item)
+                        <div class="col col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mb-4">
+                            <div class="card card-calon">
+                                <img style="min-width: 10vw;" class="cover img-fluid"
+                                    src="{{ asset('storage/' . $item->image ) }}" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title candidate-name">{{$key+1}}. {{ $item->nama_kandidat }}
+                                    </h5>
+                                    <p class="slogan-title">Kelas :</p>
+                                    <p class="slogan">{{$item->slogan}}</p>
+                                    <span class="btn btn-block btn-danger btn-vm"
+                                        style="cursor: default;">{{$item->jumlah_pemilih_count}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        @empty
+                        <h1 style="text-align: center;">Tidak Ada Kandidat</h1>
+                        @endforelse
                     </div>
-
                 </div>
             </div>
-        </div>
-
-    </section>
-    <section style="height:100%; width: 100%; box-sizing: border-box; background-color: #FFFFFF">
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-            .btn:focus,
-            .btn:active {
-                outline: none !important;
-            }
-
-            .main-content-3-1 {
-                padding: 5rem 2rem 5rem 2rem;
-            }
-
-            .img-hero-content-3-1 {
-                width: 100%;
-                margin-bottom: 3rem;
-            }
-
-            .right-column-content-3-1 {
-                width: 100%;
-            }
-
-            .title-text-content-3-1 {
-                font-size: 1.875rem;
-                line-height: 2.25rem;
-                font-weight: 600;
-                margin-bottom: 2.5rem;
-                letter-spacing: -0.025em;
-                color: #121212;
-            }
-
-            .title-caption-content-3-1 {
-                font-weight: 500;
-                font-size: 1.5rem;
-                line-height: 2rem;
-                margin-bottom: 1.25rem;
-                color: #121212;
-            }
-
-            .circle-content-3-1 {
-                height: 3rem;
-                width: 3rem;
-                font-size: 1.25rem;
-                line-height: 1.75rem;
-                margin-bottom: 1.25rem;
-                color: #FFFFFF;
-                border-radius: 9999px;
-                background-color: #FFBF56;
-            }
-
-            .text-caption-content-3-1 {
-                font-size: 1rem;
-                line-height: 1.5rem;
-                letter-spacing: 0.025em;
-                line-height: 1.75rem;
-                color: #565656;
-            }
-
-            .btn-content-3-1 {
-                font-weight: 600;
-                font-size: 1rem;
-                line-height: 1.5rem;
-                color: #FFFFFF;
-                padding: 1rem 2.5rem 1rem 2.5rem;
-                background-color: #FF7C57;
-                transition: 0.3s;
-                letter-spacing: 0.025em;
-                border-radius: 0.75rem;
-            }
-
-            .btn-content-3-1:hover {
-                color: #FFFFFF;
-                background-color: #FF9779;
-                transition: 0.3s;
-            }
-
-            @media (min-width: 576px) {}
-
-            @media (min-width: 768px) {
-                .title-text-content-3-1 {
-                    font-size: 2.25rem;
-                    line-height: 2.5rem;
-                }
-            }
-
-            @media (min-width: 992px) {
-                .img-hero-content-3-1 {
-                    width: 50%;
-                    margin-bottom: 0;
-                }
-
-                .right-column-content-3-1 {
-                    width: 50%;
-                }
-
-                .circle-content-3-1 {
-                    margin-right: 1.25rem;
-                    margin-bottom: 0;
-                }
-            }
-
-            @media (min-width: 1200px) {}
-        </style>
-        <div id="tutorial" class="main-content-3-1" style="font-family: 'Poppins', sans-serif;">
-            <div class="d-flex flex-lg-row flex-column align-items-center">
-                <!-- Left Column -->
-                <div class="img-hero-content-3-1 text-center justify-content-center d-flex">
-                    <img id="hero-content-3-1" class="img-fluid" src="{{ asset('elements/img/Content-3-1.png')}}"
-                        alt="">
-                </div>
-
-                <!-- Right Column -->
-                <div
-                    class="right-column-content-3-1 d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
-                    <h2 class="title-text-content-3-1">Cara Melakukan Pemilihan</h2>
-                    <ul style="padding:0;margin:0">
-                        <li class="list-unstyled" style="margin-bottom: 2rem;">
-                            <h4
-                                class="title-caption-content-3-1 d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-                                <span class="circle-content-3-1 d-flex align-items-center justify-content-center">
-                                    1
-                                </span>
-                                Masuk Menggunakan Token Anda
-                            </h4>
-                            <p class="text-caption-content-3-1 d-sm-inline d-none">
-                                Buka halaman login, lalu masukkan token atau Email dan password <br> anda yang
-                                sudah diberi oleh panitia.
-                            </p>
-                            <p class="text-caption-content-3-1 d-sm-none d-inline">
-                                Buka halaman login, lalu masukkan token atau Email dan password <br> anda yang
-                                sudah diberi oleh panitia.
-                            </p>
-                        </li>
-                        <li class="list-unstyled" style="margin-bottom: 2rem;">
-                            <h4
-                                class="title-caption-content-3-1 d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-                                <span class="circle-content-3-1 d-flex align-items-center justify-content-center">
-                                    2
-                                </span>
-                                Lihat Visi & Misi Calon
-                            </h4>
-                            <p class="text-caption-content-3-1 d-sm-inline d-none">
-                                klik tombol visi & misi pada salah satu <br> calon untuk melihat visi & misi
-                            </p>
-                            <p class="text-caption-content-3-1 d-sm-none d-inline">
-                                klik tombol visi & misi pada salah satu <br> calon untuk melihat visi & misi
-                            </p>
-                        </li>
-                        <li class="list-unstyled" style="margin-bottom: 4rem;">
-                            <h4
-                                class="title-caption-content-3-1 d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
-                                <span class="circle-content-3-1 d-flex align-items-center justify-content-center">
-                                    3
-                                </span>
-                                Pilih Calon Yang Diinginkan
-                            </h4>
-                            <p class="text-caption-content-3-1 d-sm-inline d-none">
-                                Setelah melihat visi & misi calon, <br> jika sudah yakin maka klik tombol pilih untuk
-                                memilih.
-                            </p>
-                            <p class="text-caption-content-3-1 d-sm-none d-inline">
-                                Setelah melihat visi & misi calon, <br> jika sudah yakin maka klik tombol pilih untuk
-                                memilih.
-                            </p>
-                        </li>
-                    </ul>
-                    <a href="{{URL::route('dashboard')}}" class="btn btn-content-3-1">Pilih Sekarang!</a>
-                </div>
-            </div>
-
-
         </div>
 
     </section>

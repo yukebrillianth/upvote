@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -15,20 +16,21 @@ class UsersImport implements ToModel, WithUpserts, WithHeadingRow
 {
 
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+
     public function model(array $row)
     {
         $user = User::create([
             'name'      => $row['NAMA PESERTA'],
-            'email'     => $row['EMAIL (Token)'],
+            'email'     => $row['EMAIL (Token)'] . "@up.vote",
             'kelas_id'  => $row['ID KELAS'],
             'password'  => Hash::make($row['PASSWORD']),
         ]);
         $user->attachRole('participant');
+        Cache::forget('participant');
         return $user;
     }
 

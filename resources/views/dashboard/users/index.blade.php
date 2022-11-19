@@ -28,7 +28,8 @@
   <div class="card-header">
     <div class="btn-group">
       <a href="{{ Route('addPeserta') }}" class="btn btn-success">Tambah Data</a>
-      <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
+      <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown"
+        aria-expanded="false">
         <span class="sr-only">Toggle Dropdown</span>
       </button>
       <div class="dropdown-menu" role="menu" style="">
@@ -69,10 +70,14 @@
           <td><span class="badge badge-success">Sudah Memilih</span></td>
           @endif
           <td>
-            <a href="{{ Route('editPeserta', ['id' => $item->id]) }}" class="badge badge-success text-white" role="button">Ubah</a>
-            <a href="#" class="badge badge-dark blacklistBtn text-white" id="blacklistBtn" data-id="{{ $item->id }}" role="button">Blacklist</a>
-            <a href="#" class="badge badge-warning resetStatusBtn" id="resetStatusBtn" data-id="{{ $item->id }}" role="button">Reset Status</a>
-            <a href="#" class="badge badge-danger btn-del text-white" id="singledel" data-id="{{ $item->id }}" role="button">Hapus</a>
+            <a href="{{ Route('editPeserta', ['id' => $item->id]) }}" class="badge badge-success text-white"
+              role="button">Ubah</a>
+            <a href="#" class="badge badge-dark blacklistBtn text-white" id="blacklistBtn" data-id="{{ $item->id }}"
+              role="button">Blacklist</a>
+            <a href="#" class="badge badge-warning resetStatusBtn" id="resetStatusBtn" data-id="{{ $item->id }}"
+              role="button">Reset Status</a>
+            <a href="#" class="badge badge-danger btn-del text-white" id="singledel" data-id="{{ $item->id }}"
+              role="button">Hapus</a>
           </td>
         </tr>
         @endforeach
@@ -122,7 +127,7 @@
 <script src="{{ asset('adminLTE/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('adminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.fileDownload/1.4.2/jquery.fileDownload.min.js" integrity="sha512-MZrUNR8jvUREbH8PRcouh1ssNRIVHYQ+HMx0HyrZTezmoGwkuWi1XoaRxWizWO8m0n/7FXY2SSAsr2qJXebUcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ asset('js/jquery.fileDownload.js') }}"></script>
 
 <!-- page script -->
 <script>
@@ -246,13 +251,29 @@
                 data: formData,
                 processData: false,
                 contentType: false,
+                beforeSend: () => {
+                  swal.fire({
+                      title:"", 
+                      text:"Loading...",
+                      imageUrl: 'https://www.boasnotas.com/img/loading2.gif',
+                      imageHeight: 200,
+                      showCancelButton: false,
+                      showConfirmButton: false,
+                      closeOnClickOutside: false,
+                  });
+                },
                 success: (res) => {
+                    uploading = false;
+                    Swal.close()
                     Swal.fire('Uploaded', 'Your file have been uploaded', 'success').then(() => {
                       location.reload();
                     });
+                    Swal.hideLoading();
                 },
                 error: (err) => {
+                    uploading = false;
                     Swal.fire({ type: 'error', title: 'Oops...', text: 'Something went wrong!' })
+                    Swal.hideLoading();
                 }
             })
         }

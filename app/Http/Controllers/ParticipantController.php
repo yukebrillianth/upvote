@@ -10,6 +10,7 @@ use App\Models\Setting;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use Rainwater\Active\Active;
@@ -33,7 +34,9 @@ class ParticipantController extends Controller
 
     public function index()
     {
-        $data = User::whereRoleIs('participant')->get();
+        $data = Cache::remember('participant', 60 * 60, function () {
+            return User::whereRoleIs('participant')->get();
+        });
         return view('dashboard.users.index', compact('data'));
     }
 
@@ -74,6 +77,7 @@ class ParticipantController extends Controller
         ]);
         $user->attachRole('participant');
 
+        Cache::forget('participant');
         Alert::success('Data Berhasil Ditambahkan!');
         return redirect()->route('peserta');
     }
@@ -82,6 +86,7 @@ class ParticipantController extends Controller
     {
         $class = kelas::all();
         $data = User::whereRoleIs('participant')->findOrfail($id);
+        Cache::forget('participant');
 
         return view('dashboard.users.edit', compact('data', 'class'));
     }
@@ -89,7 +94,7 @@ class ParticipantController extends Controller
     public function update(Request $request, $id)
     {
         $request["email_peserta"] = strtolower(str_replace(' ', '', $request["email_peserta"])) . "@up.vote";
-        $validatedData = $request->validate(
+        $request->validate(
             [
                 'nama_peserta' => 'required|max:45|min:4',
                 'email_peserta' => 'required|max:45|min:6',
@@ -114,6 +119,7 @@ class ParticipantController extends Controller
             'kelas_id' => $request->kelas_id,
             'password' => Hash::make($request->password)
         ]);
+        Cache::forget('participant');
 
         Alert::success('Data Berhasil Dirubah!');
         return redirect()->route('peserta');
@@ -125,7 +131,8 @@ class ParticipantController extends Controller
             ->findOrfail($id)
             ->update(['has_blacklisted' => true]);
 
-        Alert::toast('Sukses Diblacklist','success');
+        Cache::forget('participant');
+        Alert::toast('Sukses Diblacklist', 'success');
         return redirect()->route('peserta');
     }
 
@@ -139,7 +146,8 @@ class ParticipantController extends Controller
         Vote::where('users_id', '=', $id);
         Vote::where('users_id', $id)->delete();
 
-        Alert::toast('Status Sukses Direset','success');
+        Cache::forget('participant');
+        Alert::toast('Status Sukses Direset', 'success');
         return redirect()->route('peserta');
     }
 
@@ -149,6 +157,7 @@ class ParticipantController extends Controller
             ->findOrfail($id)
             ->delete();
 
+        Cache::forget('participant');
         Alert::success('Peserta Berhasil Dihapus!');
         return redirect()->route('peserta');
     }
@@ -156,6 +165,8 @@ class ParticipantController extends Controller
     public function deleteAll()
     {
         User::whereRoleIs('participant')->delete();
+
+        Cache::forget('participant');
 
         Alert::success('Data berhasil dihapus!');
         return redirect()->back();
@@ -166,13 +177,13 @@ class ParticipantController extends Controller
         return Excel::download(new UsersExport, 'peserta.xlsx');
     }
 
-    public function import() 
+    public function import()
     {
         Excel::import(new UsersImport, request()->file('file'));
-        
+
         return response()->json([
             'code' => 201,
             'status' => 'success'
-            ]);
+        ]);
     }
 }

@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Kelas');
     }
+
+    public function activity()
+    {
+        return $this->hasMany(UserActivity::class);
+    }
 }

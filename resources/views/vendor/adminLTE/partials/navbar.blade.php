@@ -8,7 +8,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item">
-            <span class="text-muted nav-link">Senin, 12 April 2021</span>
+            <span class="text-muted nav-link">{{Carbon\Carbon::now()->locale('id')->isoFormat('dddd, LL')}}</span>
         </li>
     </ul>
 
@@ -20,7 +20,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/logout">
+            <a class="nav-link" href="/keluar">
                 <span class="btn btn-sm btn-danger" style="margin-top: -5px;"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp; Keluar</span>
             </a>
         </li>

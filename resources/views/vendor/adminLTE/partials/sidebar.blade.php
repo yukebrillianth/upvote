@@ -1,7 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{URL::route('dashboard')}}" class="brand-link">
-        <img src="{{ asset('img/logo-grayscale.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-1" style="opacity: .8">
+        <img src="{{ asset('img/logo-grayscale.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-1"
+            style="opacity: .8">
         <span class="brand-text font-weight-light">UpVote</span>
     </a>
 
@@ -10,7 +11,8 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{ Avatar::create(Auth::user()->name)->setTheme('grayscale-dark')->setFontSize(40)->setShape('square')->toBase64() }}" class="img-circle elevation-2" alt="User Image">
+                <img src="{{ Avatar::create(Auth::user()->name)->setTheme('grayscale-dark')->setFontSize(40)->setShape('square')->toBase64() }}"
+                    class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">{{Auth::user()->name}}</a>
@@ -23,7 +25,8 @@
                 <!-- Add icons to the links using the .nav-icon class
        with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{URL::route('dashboard')}}" class="nav-link {{ (request()->is('dashboard')) ? 'active' : '' }}">
+                    <a href="{{URL::route('dashboard')}}"
+                        class="nav-link {{ (request()->is('dashboard')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -31,7 +34,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{URL::route('kandidat')}}" class="nav-link {{ (request()->is('dashboard/kandidat*')) ? 'active' : '' }}">
+                    <a href="{{URL::route('kandidat')}}"
+                        class="nav-link {{ (request()->is('dashboard/kandidat*')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-tie"></i>
                         <p>
                             Kandidat
@@ -39,7 +43,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{URL::route('kelas')}}" class="nav-link {{ (request()->is('dashboard/kelas*')) ? 'active' : '' }}">
+                    <a href="{{URL::route('kelas')}}"
+                        class="nav-link {{ (request()->is('dashboard/kelas*')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-friends"></i>
                         <p>
                             Kelas
@@ -47,10 +52,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{URL::route('peserta')}}" class="nav-link {{ (request()->is('dashboard/peserta*')) ? 'active' : '' }}">
+                    <a href="{{URL::route('peserta')}}"
+                        class="nav-link {{ (request()->is('dashboard/peserta*')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Peserta
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{URL::route('settings')}}"
+                        class="nav-link {{ (request()->is('dashboard/settings*')) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Settings
                         </p>
                     </a>
                 </li>

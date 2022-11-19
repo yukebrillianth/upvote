@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Candidate;
 use App\Models\Setting;
 use App\Models\User;
+use App\Models\UserActivity;
 use App\Models\Vote;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Rainwater\Active\Active;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardController extends Controller
@@ -33,7 +35,7 @@ class DashboardController extends Controller
             } elseif (Auth::user()->has_voted) {
                 Auth::logout();
                 Alert::error('Anda Sudah Memilih!');
-                return redirect()->route('home');
+                return redirect()->route('login')->with('error', 'Anda Sudah Memilih!');
             } else {
                 $data = Candidate::all();
                 $vote = Vote::all()->count();
@@ -42,14 +44,19 @@ class DashboardController extends Controller
         } elseif (Auth::user()->hasRole('super-administrator')) {
             $participants = User::whereRoleIs('participant')->count();
             $candidates = Candidate::get()->count();
+            $userActivity = UserActivity::with('user')->latest()->take(10)->get();
             $has_voted = User::where('has_voted', true)->whereRoleIs('participant')->count();
             $no_voted = User::where('has_voted', false)->whereRoleIs('participant')->count();
+            $admin = User::whereRoleIs('super-administrator')->count();
+            $onlineUsers = Active::users()->count()-$admin;
             $data = [
                 "peserta" => $participants,
-                "kandidat" => $candidates,
+                "online_users" => $onlineUsers,
                 "sudah_memilih" => $has_voted,
-                "belum_memilih" => $no_voted
+                "belum_memilih" => $no_voted,
+                "userActivity" => $userActivity
             ];
+
             return view('dashboard.index', compact('data'));
         }
     }
