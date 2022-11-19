@@ -284,7 +284,7 @@
     * Download User Import Template
     */
     $('#btnDownload').click( () => {
-      $.fileDownload('/storage/template/Template%20Import%20Peserta%202021.xlsx');
+      $.fileDownload('/template/Template%20Import%20Peserta%202021.xlsx');
    }); // Selector
 </script>
 @endpush
