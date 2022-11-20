@@ -27,7 +27,6 @@ class DashboardController extends Controller
         Jika role = user, maka akan menampilkan form
         Jika role = super-administrator, maka akan menampilkan dashboard
         */
-        dd(Auth::user());
         if (Auth::user()->hasRole('participant')) {
             if (Auth::user()->has_blacklisted == 1) {
                 Auth::logout();
@@ -57,7 +56,7 @@ class DashboardController extends Controller
                 "belum_memilih" => $no_voted,
                 "userActivity" => $userActivity
             ];
-
+            dd($data);
             return view('dashboard.index', compact('data'));
         }
     }
