@@ -87,5 +87,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:super-admi
         Route::get('/', [SettingController::class, 'index'])->name('settings');
         Route::post('/', [SettingController::class, 'store'])->name('storeSettings');
         Route::post('/active', [SettingController::class, 'active'])->name('storeSettingsStatus');
+        Route::post('/changepassword', [SettingController::class, 'changepassword'])->name('changePassword');
     });
 });

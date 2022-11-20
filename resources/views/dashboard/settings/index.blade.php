@@ -23,7 +23,10 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="card card-primary">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Pengaturan Dasar</h3>
+            </div>
             <form method="POST" role="form" action="{{route('storeSettings')}}">
                 @csrf
                 <div class="card-body">
@@ -62,6 +65,49 @@
                                 @if($data[0]->active === 1)checked @endif value="{{$data[0]->active}}">
                             <label class="custom-control-label" for="activeSwitch">Kegiatan Aktif</label>
                         </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Ganti Password</h3>
+            </div>
+            <form method="POST" role="form" action="{{route('changePassword')}}">
+                @csrf
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="current_password">Password saat ini</label>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                            id="current_password" name="current_password" placeholder="Masukkan password saat ini">
+                        @error('current_password')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="new_password">Password Baru</label>
+                        <input type="password" class="form-control @error('new_password') is-invalid @enderror"
+                            id="new_password" name="new_password" placeholder="Masukkan password baru">
+                        @error('new_password')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="new_confirm_password">Konfirmasi password</label>
+                        <input type="password" class="form-control @error('new_confirm_password') is-invalid @enderror"
+                            id="new_confirm_password" name="new_confirm_password"
+                            placeholder="Masukkan konfirmasi password">
+                        @error('new_confirm_password')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
 
