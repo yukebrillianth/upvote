@@ -56,7 +56,7 @@ class DashboardController extends Controller
                 "belum_memilih" => $no_voted,
                 "userActivity" => $userActivity
             ];
-            dd($data);
+            dd($data["userActivity"][0]->user);
             return view('dashboard.index', compact('data'));
         }
     }
