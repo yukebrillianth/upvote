@@ -1,0 +1,12 @@
+services:
+  dev:
+    image: 16nsk/devcontainers:8.2-18-debian
+    command: sleep infinity
+    volumes:
+      - workspace:/workspace
+    ports:
+      - "8000:8000"
+      - "3000:3000"
+
+volumes:
+  workspace:
