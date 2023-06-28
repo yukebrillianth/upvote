@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn(['email', 'email_verified_at']);
-            $table->mediumInteger('identity_number')->nullable(false)->unique();
+            $table->bigInteger('identity_number')->nullable(false)->unique();
             $table->integer('age')->nullable(true);
             $table->mediumText('address')->nullable(true);
             $table->boolean('has_blacklisted')->default(false);
