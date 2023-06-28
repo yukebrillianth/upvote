@@ -1,0 +1,14 @@
+{
+  "name": "upvote",
+    "dockerComposeFile": "docker-compose.yaml",
+    "service": "dev",
+    "workspaceFolder": "/workspace",
+    "shutdownAction": "stopCompose",
+    "extensions": [
+        "EditorConfig.EditorConfig",
+        "bmewburn.vscode-intelephense-client",
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "xdebug.php-debug"
+    ]
+}
